@@ -8,37 +8,57 @@ port **the baudrate can be set to any value.** There are few commands
 available on COM console depending on the device A2B role.
 ![image_alt](assets/image6.tmp)
 
+
 ### Console commands in Master mode.
 
 **Following console commands are available in Master mode:**
 
-**reset** - resets the device
+#### reset 
+Resets the device
 
-**info** - Prints the information about the device
+#### info 
+Prints the information about the device
 
-**status** - Prints the status of the device. Contains the information
-about the number of slaves discovered and current A2B status.
+#### status 
+Prints the status of the device. Contains the information about the number of slaves discovered and current A2B status.
 
-**resetjson** - resets the CONFIG.TXT Json file to default one.
+#### resetjson 
+resets the CONFIG.TXT Json file to default one.
 
-**a2bdiscover -** Performs A2B discovery and updates the number of
+#### discover
+Performs A2B discovery and updates the number of
 discovered A2B slaves.
 
-**switchproto -** Switches COM port to protobuf mode
+#### switchproto
+Switches COM port to protobuf mode
+
+#### loglevel
+Changes the log level. Must to be set to one of these values - \["off", "info", "warning", "error"\]
+
+#### regs
+Prints the A2B transceiver registers and its values. If the number of subnode is provided (in master mode) then prints the register values from the subnode transceiver.
+Usage: regs / regs 0
+
+
 
 ### Console commands in Slave mode.
 
 **Following console commands are available in Slave mode:**
 
-**reset** - resets the device
+#### reset 
+Resets the device
 
-**info** - Prints the information about the device
+#### info
+Prints the information about the device
 
-**status** - Prints the status of the device.
+#### status
+Prints the status of the device.
 
-**resetjson** - resets the CONFIG.TXT Json file to default one.
+#### resetjson
+Resets the CONFIG.TXT Json file to default one.
 
-**switchproto -** Switches COM port to protobuf mode
+#### switchproto
+Switches COM port to protobuf mode
 
 ## Protobuf mode
 

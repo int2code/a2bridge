@@ -2,7 +2,7 @@ site_name: A2Bridge User Guide
 theme:
   name: readthedocs
 
-docs_dir: ./docs/userguide/docs
+docs_dir: ./docs/userguide
 
 markdown_extensions:
   - attr_list
