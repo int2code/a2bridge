@@ -2,6 +2,8 @@ site_name: A2Bridge User Guide
 theme:
   name: readthedocs
 
+docs_dir: ./docs/userguide/docs
+
 markdown_extensions:
   - attr_list
   - toc
@@ -10,5 +12,7 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.emoji
   - pymdownx.superfences
+  - admonition
+  - pymdownx.details
   - pymdownx.tabbed:
       alternate_style: true

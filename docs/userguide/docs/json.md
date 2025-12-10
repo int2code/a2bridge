@@ -125,9 +125,10 @@ bus and transmitted to USB bus. Each row represents A2B channel received
 from the bus and each element within a row is an USB output channel
 number.
 
-Attention:
+!!! info inline end "Attention:"
 
-It works opposite to AudioRouteMatrixDownstream.
+    It works opposite to AudioRouteMatrixDownstream.
+  
 
 ### A2BMasterConfig 
 Contains the configuration used when the device is
