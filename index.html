@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="None" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>A2Bridge User Guide</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Home";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> A2Bridge User Guide
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Home</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#device-overview">Device overview</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#usb-communication">USB Communication</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#device-status">Device status</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#windows-setup">Windows setup</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="dfu/">DFU firmware update</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="json/">JSON configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="serial/">Virtual COM port communication</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">A2Bridge User Guide</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Home</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="home">Home</h1>
+<p><img alt="image_alt" src="assets/image1.png" /></p>
+<h2 id="device-overview">Device overview</h2>
+<p>The A2Bridge is used to transmit or receive the audio via USB to A2B
+bus. It can be configured to be used either as an A2B master or slave.
+After the device is connected to PC it is present as an external USB
+audio device and audio can easily be transmitted to it in the same way
+as it is transmitted to any other connected speaker.</p>
+<h2 id="usb-communication">USB Communication</h2>
+<p>After the device is successfully connected to the host PC it will be
+presented as 4 USB endpoints:<br />
+- External audio device<br />
+- Mass storage device<br />
+- DFU<br />
+- Virtual COM port</p>
+<p><img src="./assets/image2.tmp"
+style="width:4.875in;height:2.11458in" /></p>
+<p>External audio device endpoints are used to transmit or receive audio
+data to A2Bridge.</p>
+<p>There are 2 USB ports available.<br />
+<strong>Host PC -</strong> this port is obligatory for A2Bridge↔︎ PC communication.</p>
+<p><strong>Power USB PD</strong> - this port is optional, used for extra power for the
+device. Device requires significant amounts of power, especially while
+used with bus-powered sub-nodes. Not all USB ports might deliver enough
+power (USB 2.0 ports). It is recommended to connect device to USB-PD
+port on your device, in that case single USB connection is sufficient.
+In all other cases please connect one USB to the PC and another to a PD
+capable charger.</p>
+<h2 id="device-status">Device status</h2>
+<p>Device can be in 3 different states which is represented by one of the LEDs on the board:</p>
+<table>
+<thead>
+<tr>
+<th>status</th>
+<th>LED color</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ERROR</code></td>
+<td><span style="color:red">RED</span></td>
+<td>Device is in runtime unrecoverable error (ie. unexpected node drop).  <strong>Audio output is fully muted in that state.</strong></td>
+</tr>
+<tr>
+<td><code>IMPAIRED</code></td>
+<td><span style="color:yellow">YELLOW</span></td>
+<td>Device is in an impaired state (ie. not all configured slaves were discovered).  State can be recovered ie. by doing rediscovery of the bus via console.    <strong>Audio output is fully muted in that state.</strong></td>
+</tr>
+<tr>
+<td><code>NORMAL</code></td>
+<td><span style="color:green">GREEN</span></td>
+<td>The device is fully operational.</td>
+</tr>
+</tbody>
+</table>
+<p>Each state has a corresponding LED color.</p>
+<p>There is a LED indicating the current state of the Power Delivery port</p>
+<table>
+<thead>
+<tr>
+<th>status</th>
+<th>LED color</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DISCONNECTED</code></td>
+<td><span style="color:blue">BLUE</span></td>
+<td>No power supply is connected to USB PD port</td>
+</tr>
+<tr>
+<td><code>NO MATCHING PDU</code></td>
+<td><span style="color:yellow">YELLOW</span></td>
+<td>Power supply is connected but it can not provide the voltage configured with "SupplyVoltage" property in Json configuration</td>
+</tr>
+<tr>
+<td><code>NORMAL</code></td>
+<td><span style="color:green">GREEN</span></td>
+<td>Power supply connected and provides the voltage configured with SupplyVoltage property</td>
+</tr>
+</tbody>
+</table>
+<p>For A2B bus communication there are 2 ports available:<br />
+<strong>A2B Master</strong> - This is the port used for communication with previous
+A2B sub-node(towards main node). <em>Should be used only in the slave
+mode.</em></p>
+<p><strong>A2B Slave</strong> - This port is used for communication with next A2B
+sub-node(towards next sub-node). <em>Can be used in both Master and Slave
+modes.</em></p>
+<p><img src="./assets/image3.tmp"
+style="width:4.875in;height:1.23958in" /></p>
+<h3 id="windows-setup">Windows setup</h3>
+<p>By default, Windows OS cannot transmit more than 2 output channels to
+the output. To use more than 2 output channels additional drivers need
+to be installed (Check <a href="https://asio4all.org/about/download-asio4all/">Download – ASIO4ALL Official
+Home</a>). After
+installation of additional drivers, it can be used in programs like
+Audacity or ocenaudio.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="dfu/" class="btn btn-neutral float-right" title="DFU firmware update">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+      <span><a href="dfu/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.6.1
+Build Date UTC : 2025-12-11 09:56:24.768570+00:00
+-->

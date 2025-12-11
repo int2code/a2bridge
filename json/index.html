@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>JSON configuration - A2Bridge User Guide</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "JSON configuration";
+        var mkdocs_page_input_path = "json.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> A2Bridge User Guide
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../dfu/">DFU firmware update</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">JSON configuration</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#json-properties">JSON Properties</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#version">Version</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#name-the-name-of-the-configuration-users-can-change-it-to-save">Name - The name of the configuration. Users can change it to save</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#resetonnew">ResetOnNew</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#a2brole">A2BRole</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#audioresolution">AudioResolution</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usbinputchannels">UsbInputChannels</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usboutputchannels">UsbOutputChannels</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#runinprotobufmode">RunInProtobufMode</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#supplyvoltage">SupplyVoltage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#audioroutematrixdownstream">AudioRouteMatrixDownstream</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#audioroutematrixupstream">AudioRouteMatrixUpstream</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#a2bmasterconfig">A2BMasterConfig</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#slavesonbus">SlavesOnBus</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dnslots">DnSlots</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#upslots">UpSlots</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#slaveconfiguration">SlaveConfiguration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#early">EARLY</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#alt">ALT</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#inv">INV</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#rxbclkinv">RXBCLKINV</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#txbclkinv">TXBCLKINV</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#tdmss">TDMSS</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#interleave">INTERLEAVE</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#a2bslaveconfig">A2BSlaveConfig</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../serial/">Virtual COM port communication</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">A2Bridge User Guide</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">JSON configuration</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="json-configuration">JSON configuration</h1>
+<p>The mass storage class USB endpoint is used to pass the needed A2B
+configuration with JSON file.<br />
+To access it opens the CONFIG.TXT file. <strong>Please be aware that JSON
+configuration is case sensitive.</strong> By default, it contains the following
+configuration</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.31&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Default&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;ResetOnNew&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;True&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;A2BRole&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Master&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;AudioResolution&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;UsbInputChannels&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;UsbOutputChannels&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;RunInProtobufMode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;True&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;SupplyVoltage&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;AudioRouteMatrixDownstream&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;AudioRouteMatrixUpstream&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;A2BMasterConfig&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;SlavesOnBus&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;DnSlots&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;UpSlots&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;SlaveConfiguration&quot;</span><span class="p">:[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Node&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;DnSlots&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;LocalDnSlots&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;UpSlots&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;LocalUpSlots&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;PowerConfig&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;High&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;CableLength&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;ConfigureTDM&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;True&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;TdmTxLines&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;TdmRxLines&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;TDMMode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TDM8&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;TDMOptions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;EARLY&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;INV&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ALT&quot;</span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;A2BSlaveConfig&quot;</span><span class="p">:</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;TdmRxChannels&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;TdmTxChannels&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>To configure the A2bridge the following options can be changed.</p>
+<h2 id="json-properties">JSON Properties</h2>
+<h3 id="version">Version</h3>
+<p>The version of the JSON configuration. It needs to be
+compatible with A2Bridge. The user does not need to change it.  </p>
+<h3 id="name-the-name-of-the-configuration-users-can-change-it-to-save">Name - The name of the configuration. Users can change it to save</h3>
+<p>the configuration title.</p>
+<h3 id="resetonnew">ResetOnNew</h3>
+<p>This option is used to configure the behavior on new
+configuration save. If it is set to True the device will be reset on new
+configuration uploaded.  </p>
+<h3 id="a2brole">A2BRole</h3>
+<p>Option to configure the A2B role. It can be set to one of
+these options: “Master” or “Slave”  </p>
+<h3 id="audioresolution">AudioResolution</h3>
+<p>Audio resolution in bits per sample.  </p>
+<h3 id="usbinputchannels">UsbInputChannels</h3>
+<p>Number of channels that are send to the device
+from the PC.  </p>
+<h3 id="usboutputchannels">UsbOutputChannels</h3>
+<p>Number of channels that are send to the PC from
+USBA2B box.  </p>
+<h3 id="runinprotobufmode">RunInProtobufMode</h3>
+<p>If this option is set, a2bridge will start automatically in protobuf COM port mode.</p>
+<h3 id="supplyvoltage">SupplyVoltage</h3>
+<p>Voltage requested to supply connected to USB power delivery port. This voltage will be transfered to A2B bus.</p>
+<h3 id="audioroutematrixdownstream">AudioRouteMatrixDownstream</h3>
+<p>Matrix of the channels transmitted to
+the A2B bus.<br />
+Each row is an output channel from the USB interface and each element
+within a row is an A2B output channel to which the corresponding USB
+channel’s audio will be routed.
+<div class="highlight"><pre><span></span><code>&quot;AudioRouteMatrixDownstream&quot;: [
+    [A2B Channel, A2B Channel …], - Channel 1 coming from USB
+    [A2B Channel, A2B Channel …], - Channel 2 coming from USB
+    …
+],
+</code></pre></div></p>
+<p>As an example we will create the configuration in which there will be 3
+USB output channels and 10 A2B output channels. We want to forward 1st
+USB channel to A2B channels: 1,2,3,4,5,6. 2nd USB channel will be
+forwarded to 7,8 A2B channels and the last 3rd channels will be
+forwarded to 9th A2B channel</p>
+<div class="highlight"><pre><span></span><code>&quot;AudioRouteMatrixDownstream&quot;: [
+    [1, 2, 3, 4, 5, 6], - USB Channel 1 -&gt; A2B Channels 1,2,3,4,5,6
+    [7, 8], - USB Channel 2 -&gt; A2B Channels 7,8
+    [9] - USB Channel 3 -&gt; A2B Channel 9
+]
+</code></pre></div>
+<h3 id="audioroutematrixupstream">AudioRouteMatrixUpstream</h3>
+<p>Matrix of the channels received from A2B
+bus and transmitted to USB bus. Each row represents A2B channel received
+from the bus and each element within a row is an USB output channel
+number.</p>
+<div class="admonition info inline end">
+<p class="admonition-title">Attention:</p>
+<p>It works opposite to AudioRouteMatrixDownstream.</p>
+</div>
+<h3 id="a2bmasterconfig">A2BMasterConfig</h3>
+<p>Contains the configuration used when the device is
+set to “Master” mode.  </p>
+<h3 id="slavesonbus">SlavesOnBus</h3>
+<p>Number of slaves available on A2B bus.  </p>
+<h3 id="dnslots">DnSlots</h3>
+<p>Number of down slots going out from the device.  </p>
+<h3 id="upslots">UpSlots</h3>
+<p>Number of the up slots coming to the device.  </p>
+<h3 id="slaveconfiguration">SlaveConfiguration</h3>
+<p>Contains the table of the slave configurations.
+Each slave configuration should contain following properties:</p>
+<ul>
+<li>
+<p>Node - Node number. The order of the node counting from 0</p>
+</li>
+<li>
+<p>DnSlots - Number of channels forwarded downward.</p>
+</li>
+<li>
+<p>LocalDnSlots - Number of the slots coming from the upper-node consumed
+  by the current node.</p>
+</li>
+<li>
+<p>UpSlots - Number of slots forwarded upward.</p>
+</li>
+<li>
+<p>LocalUpSlots - number of slots produced by current node. The number of
+  slots send up to the upper node (to master direction) is equal to
+  UpSlots + LocalUpSlots</p>
+</li>
+<li>
+<p>PowerConfig - Power configuration. Can be set to one of those values:
+  <strong>High</strong> or <strong>Low</strong></p>
+</li>
+<li>
+<p>CableLength - Length of the cable to the upper node.</p>
+</li>
+<li>
+<p>ConfigureTDM - If this option is set the slave TDM configuration will be set by a2bridge. Can be set to False if the node is configured by itself.</p>
+</li>
+<li>
+<p>TdmTxLines - number of TDM TX lines coming from the node (from A2B
+  transceiver to the slave µC)</p>
+</li>
+<li>
+<p>TdmRxLines - number of TDM RX lines coming to the node (from slave µC
+  to slave A2B transceiver)</p>
+</li>
+<li>
+<p>TDMMode - TDM mode. Should be set to the one of the following values:
+  <strong>TDM2, TDM4, TDM8, TDM12, TDM16, TDM20, TDM24, TDM32.</strong> TDMx is a
+  property which describes the number of channels in one TDM frame.</p>
+</li>
+<li>
+<p>TDMOptions - Additional TDM configuration. This is the table of flags
+  used for TDM communication.</p>
+</li>
+<li>
+<h3 id="early">EARLY</h3>
+<p>SYNC pin changes one cycle before the MSB of data
+channel 0</p>
+</li>
+<li>
+<h3 id="alt">ALT</h3>
+<p>When not set SYNC pin is active for one BCLK cycle at the
+start of each sampling period, otherwise SYNC is active for 50% of
+sampling period</p>
+</li>
+</ul>
+<p><img alt="image_alt" src="../assets/image4.png" /></p>
+<ul>
+<li>
+<h3 id="inv">INV</h3>
+<p>Invert Sync signal. When set falling edge of sync references
+  the first channel otherwise it is rising edge.</p>
+</li>
+<li>
+<h3 id="rxbclkinv">RXBCLKINV</h3>
+<p>When this flag is set DRX signal is sampled on falling
+  edge of BCLK.</p>
+</li>
+<li>
+<h3 id="txbclkinv">TXBCLKINV</h3>
+<p>When this flag is set DTX pin is changed on the
+  falling edge of BCLK.</p>
+</li>
+<li>
+<h3 id="tdmss">TDMSS</h3>
+<p>when this flag is set the slaves TDM slot length is 16
+  bits; 32 bits otherwise</p>
+</li>
+<li>
+<h3 id="interleave">INTERLEAVE</h3>
+<p>When this option is set, the channels are interleaved
+  between TDM lines.
+<img alt="image_alt" src="../assets/image5.png" /></p>
+</li>
+</ul>
+<h3 id="a2bslaveconfig">A2BSlaveConfig</h3>
+<p>contains the following options used when A2BRole
+set to Slave:</p>
+<ul>
+<li>
+<p>TdmRxChannels - number of TDM RX channels (from A2B transceiver to
+  slave µC)</p>
+</li>
+<li>
+<p>TdmTxChannels - number of TDM TX channels (from slave µC to A2B
+  transceiver)</p>
+</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../dfu/" class="btn btn-neutral float-left" title="DFU firmware update"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../serial/" class="btn btn-neutral float-right" title="Virtual COM port communication">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../dfu/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../serial/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

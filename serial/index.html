@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Virtual COM port communication - A2Bridge User Guide</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Virtual COM port communication";
+        var mkdocs_page_input_path = "serial.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> A2Bridge User Guide
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../dfu/">DFU firmware update</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../json/">JSON configuration</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Virtual COM port communication</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#human-readable-console">Human readable console</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#console-commands-in-master-mode">Console commands in Master mode.</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#reset">reset</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#info">info</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#status">status</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#resetjson">resetjson</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#discover">discover</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#switchproto">switchproto</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#loglevel">loglevel</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#regs">regs</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#console-commands-in-slave-mode">Console commands in Slave mode.</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#reset_1">reset</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#info_1">info</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#status_1">status</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#resetjson_1">resetjson</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#switchproto_1">switchproto</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#protobuf-mode">Protobuf mode</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#reset_2">Reset</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#message-properties">Message properties</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#response">Response</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#status_2">Status</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#message-properties_1">Message properties</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#response_1">Response</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#a2bdiscoveryrequest">A2BDiscoveryRequest</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#message-properties_2">Message properties</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#response_2">Response</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#i2coverdistance">I2cOverDistance</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#message-properties_3">Message properties</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#response_3">Response:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#a2bmailboxtransfer">A2BMailboxTransfer</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#message-properties_4">Message properties</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#response_4">Response</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">A2Bridge User Guide</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Virtual COM port communication</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="virtual-com-port-communication">Virtual COM port communication</h1>
+<h2 id="human-readable-console">Human readable console</h2>
+<p>One of the USB endpoints is virtual COM port which can be controlled as
+any other COM port e.g. with Putty serial. Since it is USB virtal COM
+port <strong>the baudrate can be set to any value.</strong> There are few commands
+available on COM console depending on the device A2B role.
+<img alt="image_alt" src="../assets/image6.tmp" /></p>
+<h3 id="console-commands-in-master-mode">Console commands in Master mode.</h3>
+<p><strong>Following console commands are available in Master mode:</strong></p>
+<h4 id="reset">reset</h4>
+<p>Resets the device</p>
+<h4 id="info">info</h4>
+<p>Prints the information about the device</p>
+<h4 id="status">status</h4>
+<p>Prints the status of the device. Contains the information about the number of slaves discovered and current A2B status.</p>
+<h4 id="resetjson">resetjson</h4>
+<p>resets the CONFIG.TXT Json file to default one.</p>
+<h4 id="discover">discover</h4>
+<p>Performs A2B discovery and updates the number of
+discovered A2B slaves.</p>
+<h4 id="switchproto">switchproto</h4>
+<p>Switches COM port to protobuf mode</p>
+<h4 id="loglevel">loglevel</h4>
+<p>Changes the log level. Must to be set to one of these values - ["off", "info", "warning", "error"]</p>
+<h4 id="regs">regs</h4>
+<p>Prints the A2B transceiver registers and its values. If the number of subnode is provided (in master mode) then prints the register values from the subnode transceiver.
+Usage: regs / regs 0</p>
+<h3 id="console-commands-in-slave-mode">Console commands in Slave mode.</h3>
+<p><strong>Following console commands are available in Slave mode:</strong></p>
+<h4 id="reset_1">reset</h4>
+<p>Resets the device</p>
+<h4 id="info_1">info</h4>
+<p>Prints the information about the device</p>
+<h4 id="status_1">status</h4>
+<p>Prints the status of the device.</p>
+<h4 id="resetjson_1">resetjson</h4>
+<p>Resets the CONFIG.TXT Json file to default one.</p>
+<h4 id="switchproto_1">switchproto</h4>
+<p>Switches COM port to protobuf mode</p>
+<h2 id="protobuf-mode">Protobuf mode</h2>
+<p>Device can be set to use the protobuf mode via UART instead of text mode.</p>
+<h3 id="reset_2">Reset</h3>
+<p>Resets the device</p>
+<h4 id="message-properties"><strong>Message properties</strong></h4>
+<p>None</p>
+<h4 id="response"><strong>Response</strong></h4>
+<p>Positive or negative response.</p>
+<h3 id="status_2">Status</h3>
+<p>Sends the response with current status of the device depending on the A2B Role</p>
+<h4 id="message-properties_1"><strong>Message properties</strong></h4>
+<p>None</p>
+<h4 id="response_1"><strong>Response</strong></h4>
+<p>Common for slave and Master mode:</p>
+<p><strong>usb_audio_downstream_state</strong> - Enumerate with current downstream USB state. Contains one of the following values:</p>
+<div class="highlight"><pre><span></span><code>    USB_AUDIO_STREAM_STATE_UNSPECIFIED = 0;
+    USB_AUDIO_STREAM_STATE_IDLE = 1;
+    USB_AUDIO_STREAM_STATE_STREAMING = 2;
+</code></pre></div>
+<p><strong>usb_audio_upstream_state</strong> - Enumerate with current upstream audio USB state. </p>
+<div class="highlight"><pre><span></span><code>  USB_AUDIO_STREAM_STATE_UNSPECIFIED = 0;
+  USB_AUDIO_STREAM_STATE_IDLE = 1;
+  USB_AUDIO_STREAM_STATE_STREAMING = 2;
+</code></pre></div>
+<p><strong>device_state</strong> - enumerate with current device status</p>
+<p><div class="highlight"><pre><span></span><code>  DEVICE_STATE_UNSPECIFIED = 0;
+  DEVICE_STATE_BOOT = 1;
+  DEVICE_STATE_NORMAL = 2;
+  DEVICE_STATE_IMPAIRED = 3;
+  DEVICE_STATE_ERROR = 4;
+</code></pre></div>
+<strong>config_json_state</strong> - enumerate with current json config status</p>
+<div class="highlight"><pre><span></span><code>  CONFIG_JSON_STATE_UNSPECIFIED = 0;
+  CONFIG_JSON_STATE_VALID = 1;
+  CONFIG_JSON_STATE_INVALID = 2;
+</code></pre></div>
+<p>Master:</p>
+<p><strong>A2bFault</strong> - (optional) Structure containing the information about existing fault in A2B transceiver. This message has following properties:</p>
+<p><strong>fault</strong> - enumerate with current fault type on A2B transceiver</p>
+<div class="highlight"><pre><span></span><code>  LIBAD243X_FAULTTYPE_NONE = 0,
+  LIBAD243X_FAULTTYPE_BECOVF = 1,
+  LIBAD243X_FAULTTYPE_SRF_MISS = 2,
+  LIBAD243X_FAULTTYPE_PWR_SHRT2GND = 3,
+  LIBAD243X_FAULTTYPE_PWR_SHRT2VBAT = 4,
+  LIBAD243X_FAULTTYPE_PWR_SHRT2GTHR = 5,
+  LIBAD243X_FAULTTYPE_PWR_OPEN = 6,
+  LIBAD243X_FAULTTYPE_PWR_REVERSE = 7,
+  LIBAD243X_FAULTTYPE_PWR_OTHER = 8,
+  LIBAD243X_FAULTTYPE_PWR_NL_SHRT2GND = 9,
+  LIBAD243X_FAULTTYPE_PWR_NL_SHRT2VBAT = 10,
+  LIBAD243X_FAULTTYPE_TIMEOUT = 11,
+  LIBAD243X_FAULTTYPE_MSTR_RESET = 12,
+  LIBAD243X_FAULTTYPE_OTHER = 13,
+</code></pre></div>
+<p><strong>location</strong> - enumerate containing the location of fault source</p>
+<p><div class="highlight"><pre><span></span><code>LIBAD243X_FAULTSOURCE_MASTER = 0,
+LIBAD243X_FAULTSOURCE_SLAVE = 1,
+</code></pre></div>
+<strong>slave_with_fault</strong> - (optional) If the fault source is slave contains the slave index.</p>
+<p><strong>a2b_slaves_discovered</strong> - number of slaves discovered</p>
+<p>Slave:</p>
+<p>a2b_state - A2B slave state</p>
+<p>SLAVE_A2B_STATE_UNSPECIFIED = 0;
+  SLAVE_A2B_STATE_INIT = 1;
+  SLAVE_A2B_STATE_WAIT_DISCOVER = 2;
+  SLAVE_A2B_STATE_READY = 3;
+  SLAVE_A2B_STATE_NOT_READY = 4;
+Info - Request information about the device
+<strong>Message properties:</strong>
+None
+<strong>Response:</strong></p>
+<p><strong>hardware_revision</strong> - Hardware revision number</p>
+<p><strong>software_revision</strong> - String with software revision</p>
+<p><strong>serial_number</strong> - String with serial number</p>
+<h3 id="a2bdiscoveryrequest">A2BDiscoveryRequest</h3>
+<p>Request A2B bus slave re-discovery</p>
+<h4 id="message-properties_2"><strong>Message properties</strong></h4>
+<p>None</p>
+<h4 id="response_2"><strong>Response</strong></h4>
+<p>Positive or negative</p>
+<h3 id="i2coverdistance">I2cOverDistance</h3>
+<p>Send I2C command over A2B bus to one of the slaves or its peripheral.</p>
+<h4 id="message-properties_3"><strong>Message properties</strong></h4>
+<p><strong>I2cOverDistanceAccessType</strong> - Access type enumerate:</p>
+<p><div class="highlight"><pre><span></span><code>  I2C_OVER_DISTANCE_UNSPECIFIED = 0;
+  I2C_OVER_DISTANCE_WRITE = 1;
+  I2C_OVER_DISTANCE_READ = 2;
+</code></pre></div>
+<strong>peripheral_i2c_addr</strong>  - (optional) if this property is set I2C message will be forwarded to slaves perihperal.</p>
+<p><strong>node</strong> - the index of the node to which the message will be sent or read.</p>
+<p><strong>Data</strong> - Data to send or read </p>
+<p><strong>reg</strong> - Register to read/write</p>
+<p><strong>value</strong> - Value to write in case of I2C_OVER_DISTANCE_WRITE access type</p>
+<h4 id="response_3"><strong>Response:</strong></h4>
+<p><strong>access_type</strong> - Access type enumerate:</p>
+<p>I2C_OVER_DISTANCE_UNSPECIFIED = 0;
+  I2C_OVER_DISTANCE_WRITE = 1;
+  I2C_OVER_DISTANCE_READ = 2;
+<strong>value</strong> - the value read from the register</p>
+<h3 id="a2bmailboxtransfer">A2BMailboxTransfer</h3>
+<p>Request to read/write A2B mailbox.</p>
+<h4 id="message-properties_4"><strong>Message properties</strong></h4>
+<p><strong>mailbox_id</strong> - Mailbox identifier</p>
+<p><strong>access_type</strong> - Access type enumerate:</p>
+<p><div class="highlight"><pre><span></span><code>  A2B_MAILBOX_ACCESS_TYPE_UNSPECIFIED = 0;
+  A2B_MAILBOX_ACCESS_TYPE_WRITE = 1;
+  A2B_MAILBOX_ACCESS_TYPE_READ = 2;
+</code></pre></div>
+<strong>node</strong> - node identifier to which the message will be sent/read.</p>
+<p><strong>bytes</strong> - length of the mailbox message (has to be lower than 4 bytes)</p>
+<h4 id="response_4"><strong>Response</strong></h4>
+<p><strong>mailbox_id</strong> - Mailbox identifier</p>
+<p><strong>access_type</strong> - Access type enumerate:</p>
+<p><div class="highlight"><pre><span></span><code>  A2B_MAILBOX_ACCESS_TYPE_UNSPECIFIED = 0;
+  A2B_MAILBOX_ACCESS_TYPE_WRITE = 1;
+  A2B_MAILBOX_ACCESS_TYPE_READ = 2;
+</code></pre></div>
+<strong>access_status</strong> - Status of the read/write to mailbox.</p>
+<p><div class="highlight"><pre><span></span><code>  A2B_MAILBOX_STATUS_UNSPECIFIED = 0;
+  A2B_MAILBOX_STATUS_OK = 1;
+  A2B_MAILBOX_STATUS_GENERAL_FAIL = 2;
+  A2B_MAILBOX_STATUS_NOT_EMPTY = 3;
+  A2B_MAILBOX_STATUS_NOT_FULL = 4;
+</code></pre></div>
+<strong>data</strong> - data read from the mailbox </p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../json/" class="btn btn-neutral float-left" title="JSON configuration"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../json/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
