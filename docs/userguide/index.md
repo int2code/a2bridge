@@ -9,6 +9,8 @@ After the device is connected to PC it is present as an external USB
 audio device and audio can easily be transmitted to it in the same way
 as it is transmitted to any other connected speaker.
 
+## USB Communication
+
 After the device is successfully connected to the host PC it will be
 presented as 4 USB endpoints:  
 - External audio device  
@@ -22,16 +24,6 @@ style="width:4.875in;height:2.11458in" />
 External audio device endpoints are used to transmit or receive audio
 data to A2Bridge.
 
-Device can be in 3 different states:
-
-| status      | LED color | Description                          |
-| ----------- | ----------- | ------------------------------------ |
-| `ERROR`     |  <span style="color:red">RED</span>|Device is in runtime unrecoverable error (ie. unexpected node drop).  **Audio output is fully muted in that state.**  |
-| `IMPAIRED`       |  <span style="color:yellow">YELLOW</span>| Device is in an impaired state (ie. not all configured slaves were discovered).  State can be recovered ie. by doing rediscovery of the bus via console.    **Audio output is fully muted in that state.**       |
-| `NORMAL`    |  <span style="color:green">GREEN</span>| The device is fully operational.                     |
-
-Each state has a corresponding LED color.
-
 There are 2 USB ports available.  
 **Host PC -** this port is obligatory for A2Bridge↔︎ PC communication.
 
@@ -42,6 +34,18 @@ power (USB 2.0 ports). It is recommended to connect device to USB-PD
 port on your device, in that case single USB connection is sufficient.
 In all other cases please connect one USB to the PC and another to a PD
 capable charger.
+
+## Device status
+
+Device can be in 3 different states which is represented by one of the LEDs on the board:
+
+| status      | LED color | Description                          |
+| ----------- | ----------- | ------------------------------------ |
+| `ERROR`     |  <span style="color:red">RED</span>|Device is in runtime unrecoverable error (ie. unexpected node drop).  **Audio output is fully muted in that state.**  |
+| `IMPAIRED`       |  <span style="color:yellow">YELLOW</span>| Device is in an impaired state (ie. not all configured slaves were discovered).  State can be recovered ie. by doing rediscovery of the bus via console.    **Audio output is fully muted in that state.**       |
+| `NORMAL`    |  <span style="color:green">GREEN</span>| The device is fully operational.                     |
+
+Each state has a corresponding LED color.
 
 There is a LED indicating the current state of the Power Delivery port
 

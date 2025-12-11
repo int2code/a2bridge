@@ -8,7 +8,7 @@ configuration
 
 ```json
 {
-    "Version": "1.3",
+    "Version": "1.31",
     "Name": "Default",
     "ResetOnNew": "True",
     "A2BRole": "Master",
@@ -29,7 +29,6 @@ configuration
       "SlavesOnBus": 1,
       "DnSlots": 8,
       "UpSlots": 8,
-      "PowerConfig": "Low",
       "SlaveConfiguration":[
         {
           "Node": 0,
@@ -55,7 +54,7 @@ configuration
 }
 ```
 
-To configure the USBA2B box the following options can be changed.
+To configure the A2bridge the following options can be changed.
 
 ## JSON Properties
 ### Version 
