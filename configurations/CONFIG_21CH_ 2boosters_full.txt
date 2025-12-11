@@ -1,0 +1,71 @@
+{
+    "Version": "1.3",
+    "Name": "Default",
+    "ResetOnNew": "True",
+    "A2BRole": "Master",
+    "AudioResolution": 16,
+    "UsbInputChannels": 21,
+    "UsbOutputChannels": 2,
+    "RunInProtobufMode": "False",
+    "SupplyVoltage": 5000,
+    "AudioRouteMatrixDownstream": [
+		[1],
+		[2],
+		[3],
+		[4],
+		[5],
+		[6],
+		[7],
+		[8],
+		[9],
+		[10],
+		[11],
+		[12],
+		[13],
+		[14],
+		[15],
+		[16],
+		[17],
+		[18],
+		[19],
+		[20],
+		[21]
+    ],
+    "AudioRouteMatrixUpstream": [
+      [1],
+      [2]
+    ],
+    "A2BMasterConfig" : {
+      "SlavesOnBus": 2,
+      "DnSlots": 21,
+      "UpSlots": 0,
+      "PowerConfig": "Low",
+      "SlaveConfiguration":[
+         {
+          "Node": 0,
+          "DnSlots": 17,
+          "LocalDnSlots": 4,
+          "UpSlots": 0,
+          "LocalUpSlots": 0,
+          "PowerConfig": "High",
+          "CableLength": 4,
+          "ConfigureTDM": "False",
+        },
+		{
+          "Node": 1,
+          "DnSlots": 0,
+          "LocalDnSlots": 17,
+          "UpSlots": 0,
+          "LocalUpSlots": 0,
+          "PowerConfig": "High",
+          "CableLength": 4,
+          "ConfigureTDM": "False",
+        }
+      ]
+    },
+    "A2BSlaveConfig":
+    {
+      "TdmRxChannels": 1,
+      "TdmTxChannels": 1
+    }
+}
