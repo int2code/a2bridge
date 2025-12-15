@@ -16,3 +16,6 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.tabbed:
       alternate_style: true
+
+extra_css:
+  - layout.css

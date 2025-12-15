@@ -41,9 +41,9 @@ Device can be in 3 different states which is represented by one of the LEDs on t
 
 | status      | LED color | Description                          |
 | ----------- | ----------- | ------------------------------------ |
-| `ERROR`     |  <span style="color:red">RED</span>|Device is in runtime unrecoverable error (ie. unexpected node drop).  **Audio output is fully muted in that state.**  |
-| `IMPAIRED`       |  <span style="color:yellow">YELLOW</span>| Device is in an impaired state (ie. not all configured slaves were discovered).  State can be recovered ie. by doing rediscovery of the bus via console.    **Audio output is fully muted in that state.**       |
-| `NORMAL`    |  <span style="color:green">GREEN</span>| The device is fully operational.                     |
+| `ERROR`     |  RED|Device is in runtime unrecoverable error (ie. unexpected node drop).  **Audio output is fully muted in that state.**  |
+| `IMPAIRED`       |  YELLOW| Device is in an impaired state (ie. not all configured slaves were discovered).  State can be recovered ie. by doing rediscovery of the bus via console.    **Audio output is fully muted in that state.**       |
+| `NORMAL`    |  GREEN| The device is fully operational.                     |
 
 Each state has a corresponding LED color.
 
@@ -51,9 +51,9 @@ There is a LED indicating the current state of the Power Delivery port
 
 | status             | LED color                                | Description                          |
 | ------------------ | ---------------------------------------- | ------------------------------------ |
-| `DISCONNECTED`     |  <span style="color:blue">BLUE</span>     | No power supply is connected to USB PD port |
-| `NO MATCHING PDU`  |  <span style="color:yellow">YELLOW</span>| Power supply is connected but it can not provide the voltage configured with "SupplyVoltage" property in Json configuration      |
-| `NORMAL`           |  <span style="color:green">GREEN</span>  | Power supply connected and provides the voltage configured with SupplyVoltage property                    |
+| `DISCONNECTED`     |  BLUE    | No power supply is connected to USB PD port |
+| `NO MATCHING PDU`  |  YELLOW| Power supply is connected but it can not provide the voltage configured with "SupplyVoltage" property in Json configuration      |
+| `NORMAL`           |  GREEN  | Power supply connected and provides the voltage configured with SupplyVoltage property                    |
 
 For A2B bus communication there are 2 ports available:  
 **A2B Master** - This is the port used for communication with previous
@@ -67,12 +67,3 @@ modes.*
 <img src="./assets/image3.tmp"
 style="width:4.875in;height:1.23958in" />
 
-
-### Windows setup
-
-By default, Windows OS cannot transmit more than 2 output channels to
-the output. To use more than 2 output channels additional drivers need
-to be installed (Check [Download – ASIO4ALL Official
-Home](https://asio4all.org/about/download-asio4all/)). After
-installation of additional drivers, it can be used in programs like
-Audacity or ocenaudio.

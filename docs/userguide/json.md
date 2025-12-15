@@ -54,43 +54,41 @@ configuration
 }
 ```
 
-To configure the A2bridge the following options can be changed.
+To configure the A2Bridge the following options can be changed.
 
-## JSON Properties
-### Version 
+## Version 
 The version of the JSON configuration. It needs to be
 compatible with A2Bridge. The user does not need to change it.  
   
-### Name - The name of the configuration. Users can change it to save
-the configuration title.
+## Name
+The name of the configuration. Users can change it to save the configuration title.
 
-### ResetOnNew 
+## ResetOnNew 
 This option is used to configure the behavior on new
 configuration save. If it is set to True the device will be reset on new
 configuration uploaded.  
   
-### A2BRole 
+## A2BRole 
 Option to configure the A2B role. It can be set to one of
 these options: “Master” or “Slave”  
   
-### AudioResolution 
+## AudioResolution 
 Audio resolution in bits per sample.  
   
-### UsbInputChannels 
+## UsbInputChannels 
 Number of channels that are send to the device
 from the PC.  
   
-### UsbOutputChannels 
-Number of channels that are send to the PC from
-USBA2B box.  
+## UsbOutputChannels 
+Number of channels that are send to the PC from A2Bridge box.  
 
-### RunInProtobufMode 
-If this option is set, a2bridge will start automatically in protobuf COM port mode.
+## RunInProtobufMode 
+If this option is set, A2Bridge will start automatically in protobuf COM port mode.
 
-### SupplyVoltage 
-Voltage requested to supply connected to USB power delivery port. This voltage will be transfered to A2B bus.
+## SupplyVoltage 
+Voltage in mV requested to supply connected to USB power delivery port. This voltage will be transfered to A2B bus.
   
-### AudioRouteMatrixDownstream 
+## AudioRouteMatrixDownstream 
 Matrix of the channels transmitted to
 the A2B bus.  
 Each row is an output channel from the USB interface and each element
@@ -104,11 +102,7 @@ channel’s audio will be routed.
 ],
 ```
 
-As an example we will create the configuration in which there will be 3
-USB output channels and 10 A2B output channels. We want to forward 1st
-USB channel to A2B channels: 1,2,3,4,5,6. 2nd USB channel will be
-forwarded to 7,8 A2B channels and the last 3rd channels will be
-forwarded to 9th A2B channel
+As an example we will create the configuration in which there will be 3 USB input channels and 10 A2B output channels. We want to forward 1st USB channel to A2B channels: 1,2,3,4,5,6. 2nd USB channel will be forwarded to 7,8 A2B channels and the last 3rd channels will be forwarded to 9th A2B channel.
 
 ```
 "AudioRouteMatrixDownstream": [
@@ -118,7 +112,7 @@ forwarded to 9th A2B channel
 ]
 ```
 
-### AudioRouteMatrixUpstream 
+## AudioRouteMatrixUpstream 
 Matrix of the channels received from A2B
 bus and transmitted to USB bus. Each row represents A2B channel received
 from the bus and each element within a row is an USB output channel
@@ -129,7 +123,7 @@ number.
     It works opposite to AudioRouteMatrixDownstream.
   
 
-### A2BMasterConfig 
+## A2BMasterConfig 
 Contains the configuration used when the device is
 set to “Master” mode.  
   
@@ -143,80 +137,79 @@ Number of down slots going out from the device.
 Number of the up slots coming to the device.  
   
 ### SlaveConfiguration 
-Contains the table of the slave configurations.
-Each slave configuration should contain following properties:
+Contains the table of the slave configurations. Each slave configuration should contain following properties:
 
-- Node - Node number. The order of the node counting from 0
+#### Node 
+Node number. The order of the node counting from 0
 
-- DnSlots - Number of channels forwarded downward.
+#### DnSlots 
+Number of channels forwarded downward.
 
-- LocalDnSlots - Number of the slots coming from the upper-node consumed
-  by the current node.
+#### LocalDnSlots
+Number of the slots coming from the upper-node consumed by the current node.
 
-- UpSlots - Number of slots forwarded upward.
+#### UpSlots
+Number of slots forwarded upward.
 
-- LocalUpSlots - number of slots produced by current node. The number of
-  slots send up to the upper node (to master direction) is equal to
-  UpSlots + LocalUpSlots
+#### LocalUpSlots
+Number of slots produced by current node. The number of slots send up to the upper node (to master direction) is equal to UpSlots + LocalUpSlots
 
-- PowerConfig - Power configuration. Can be set to one of those values:
-  **High** or **Low**
+#### PowerConfig 
+Power configuration. Can be set to one of those values: **High** or **Low**
 
-- CableLength - Length of the cable to the upper node.
+#### CableLength
+Length of the cable to the upper node.
 
-- ConfigureTDM - If this option is set the slave TDM configuration will be set by a2bridge. Can be set to False if the node is configured by itself.
+#### ConfigureTDM
+If this option is set the slave TDM configuration will be set by A2Bridge. Can be set to False if the node is configured by itself.
 
-- TdmTxLines - number of TDM TX lines coming from the node (from A2B
-  transceiver to the slave µC)
+#### TdmTxLines
+Number of TDM TX lines coming from the node (from A2B transceiver to the slave µC)
 
-- TdmRxLines - number of TDM RX lines coming to the node (from slave µC
-  to slave A2B transceiver)
+#### TdmRxLines
+Number of TDM RX lines coming to the node (from slave µC to slave A2B transceiver)
 
-- TDMMode - TDM mode. Should be set to the one of the following values:
-  **TDM2, TDM4, TDM8, TDM12, TDM16, TDM20, TDM24, TDM32.** TDMx is a
-  property which describes the number of channels in one TDM frame.
+#### TDMMode 
+TDM mode. Should be set to the one of the following values:
+**TDM2, TDM4, TDM8, TDM12, TDM16, TDM20, TDM24, TDM32.** 
+TDMx is a property which describes the number of channels in one TDM frame.
 
-- TDMOptions - Additional TDM configuration. This is the table of flags
-  used for TDM communication.
+#### TDMOptions
+Additional TDM configuration. This is the table of flags used for TDM communication.
+##### EARLY 
+SYNC pin changes one cycle before the MSB of data channel 0
 
-  - ### EARLY 
-SYNC pin changes one cycle before the MSB of data
-    channel 0
-
-  - ### ALT 
-When not set SYNC pin is active for one BCLK cycle at the
-    start of each sampling period, otherwise SYNC is active for 50% of
-    sampling period
+##### ALT 
+When not set SYNC pin is active for one BCLK cycle at the start of each sampling period, otherwise SYNC is active for 50% of sampling period
 
 ![image_alt](assets/image4.png)
 
-- ### INV 
+##### INV 
 Invert Sync signal. When set falling edge of sync references
   the first channel otherwise it is rising edge.
 
-- ### RXBCLKINV 
+##### RXBCLKINV 
 When this flag is set DRX signal is sampled on falling
   edge of BCLK.
 
-- ### TXBCLKINV 
-When this flag is set DTX pin is changed on the
-  falling edge of BCLK.
+##### TXBCLKINV 
+When this flag is set DTX pin is changed on the falling edge of BCLK.
 
-- ### TDMSS 
-when this flag is set the slaves TDM slot length is 16
-  bits; 32 bits otherwise
+##### TDMSS 
+when this flag is set the slaves TDM slot length is 16 bits; 32 bits otherwise
 
-- ### INTERLEAVE 
-When this option is set, the channels are interleaved
-  between TDM lines.
+##### INTERLEAVE 
+When this option is set, the channels are interleaved between TDM lines.
+
 ![image_alt](assets/image5.png)
 
-### A2BSlaveConfig 
+## A2BSlaveConfig 
 contains the following options used when A2BRole
 set to Slave:
 
-- TdmRxChannels - number of TDM RX channels (from A2B transceiver to
+#### TdmRxChannels
+Number of TDM RX channels (from A2B transceiver to
   slave µC)
 
-- TdmTxChannels - number of TDM TX channels (from slave µC to A2B
-  transceiver)
+#### TdmTxChannels
+Number of TDM TX channels (from slave µC to A2B transceiver)

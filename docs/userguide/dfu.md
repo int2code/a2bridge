@@ -1,6 +1,6 @@
-# DFU firmware update
+# Firmware Update
 
-Device firmware can be updated via USB using DFU.
+Device firmware can be updated via USB using DFU (**D**evice **F**irmware **U**pgrade).
 
 ## DFU on Windows
 

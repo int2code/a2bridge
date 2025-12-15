@@ -6,6 +6,7 @@ One of the USB endpoints is virtual COM port which can be controlled as
 any other COM port e.g. with Putty serial. Since it is USB virtal COM
 port **the baudrate can be set to any value.** There are few commands
 available on COM console depending on the device A2B role.
+
 ![image_alt](assets/image6.tmp)
 
 
