@@ -1,6 +1,13 @@
 site_name: A2Bridge User Guide
 theme:
-  name: readthedocs
+  name: material
+  palette:
+    - scheme: default
+      primary: blue
+
+  features:
+    - content.tabs.link
+    - user_color_mode_toggle
 
 docs_dir: ./docs/userguide
 
@@ -11,11 +18,15 @@ markdown_extensions:
   - pymdownx.blocks.caption
   - pymdownx.superfences
   - pymdownx.emoji
-  - pymdownx.superfences
   - admonition
+  - pymdownx.tasklist:
+      custom_checkbox: true
   - pymdownx.details
   - pymdownx.tabbed:
       alternate_style: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
 
 extra_css:
   - layout.css
