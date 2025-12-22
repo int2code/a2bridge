@@ -2,10 +2,10 @@ import time, math
 import numpy as np
 import sounddevice as sd
 
-DEVICE_NAME_SUBSTR = "XAudio A2B"   # <-- put a unique part of your device name here
+DEVICE_NAME_SUBSTR = "XAudio A2B"
 CHANNELS = 8
 DURATION_SEC = 60.0
-LEVEL = 0.8                         # 0..1; 0.8 ~ -1.9 dBFS (safe)
+LEVEL = 0.8
 FREQ_HZ = 440.0
 SAMPLERATE = 48000
 FORMAT = "int32"
@@ -23,7 +23,6 @@ def find_wdmks_device(name_substr, min_ch):
     raise SystemExit(f"No WDM-KS output device with >= {min_ch} ch matching '{name_substr}'.")
 
 def make_callback(sr):
-    # generate int16 frames; scale to +/-32767
     phase = 0.0
     omega = 2.0 * math.pi * FREQ_HZ / sr
     
@@ -51,9 +50,9 @@ def main():
             device=dev_index,
             samplerate=SAMPLERATE,
             channels=CHANNELS,
-            dtype=FORMAT,        # <-- 16-bit PCM
+            dtype=FORMAT,
             callback=cb,
-            blocksize=0,          # let backend choose
+            blocksize=0,
             latency=None
         ):
             time.sleep(DURATION_SEC)
