@@ -230,8 +230,8 @@ To read the A2Bridge status we use **status** command.
 Now we can transmit the data. In our example we will use python script to transmit the sine wave. I configured the subnode to loopback channels 1 -> 1, 3 -> 2, 5 -> 3, 7 -> 4. 
 To transmit the data we use sounddevice library (The audio can also be transmitted with ASIO4ALL and programs like Audacity or ocenaudio). The code below generates the sine wave and fullfills the audio buffer in callbacks.
 
-Please see the [play script](../../tools/scripts/play_8ch_sin.py) to find python code.
-The [record script](../../tools/scripts/record_4ch.py) can be used to record the upstream.
+Please see the [play script](https://github.com/int2code/a2bridge/blob/main/tools/scripts/play_8ch_sin.py) to find python code.
+The [record script](https://github.com/int2code/a2bridge/blob/main/tools/scripts/record_4ch.py) can be used to record the upstream.
 
 Once the audio is recorded the plot should show the sine wave like in the image below.
 
