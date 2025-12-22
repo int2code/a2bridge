@@ -65,14 +65,11 @@ def main():
         list_devices(ha_index, inputs_only=True); sys.exit(1)
     frames = int(SAMPLERATE * DURATION)
 
-    # Simple path
     data = sd.rec(frames, samplerate=SAMPLERATE, channels=CHANNELS, dtype=FORMAT, device=dev_index)
     sd.wait()
     channel_1 = [sample[0] for sample in data]
-    # Create x-axis (sample index)
     x = range(len(channel_1))
     
-     # Plot
     plt.figure(figsize=(10, 4))
     plt.plot(x, channel_1)
     plt.title("Audio Channel 1")

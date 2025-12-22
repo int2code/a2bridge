@@ -56,7 +56,6 @@ def main():
             latency=None
         ):
             time.sleep(DURATION_SEC)
-        print("SUCCESS ✅")
         return
     except Exception as e:
         print(f"  failed: {e}")

@@ -228,6 +228,8 @@ To read the A2Bridge status we use **status** command.
 
 
 Now we can transmit the data. In our example we will use python script to transmit the sine wave. I configured the subnode to loopback channels 1 -> 1, 3 -> 2, 5 -> 3, 7 -> 4. 
+
+### Audio produced with python script
 To transmit the data we use sounddevice library (The audio can also be transmitted with ASIO4ALL and programs like Audacity or ocenaudio). The code below generates the sine wave and fullfills the audio buffer in callbacks.
 
 Please see the [play script](https://github.com/int2code/a2bridge/blob/main/tools/scripts/play_8ch_sin.py) to find python code.
@@ -236,3 +238,28 @@ The [record script](https://github.com/int2code/a2bridge/blob/main/tools/scripts
 Once the audio is recorded the plot should show the sine wave like in the image below.
 
 ![image_alt](./assets/setup/output_4ch.png){: style="display:block; margin: 2rem auto; width: 70%;"} <p style="text-align:center; font-size: 15px; font-style: italic;">PyPlot output.</p>
+
+### Audio produced with ocenaudio
+
+The second option to handle multi-channel configuration is to use [ocenaudio](https://www.ocenaudio.com/) with [ASIO4ALL](https://asio4all.org/about/download-asio4all/) host API.
+Install both of these programs and start the ocenaudio. Configure the output Device by following the image below.
+![image_alt](./assets/setup/ocenaudio_config.png){: style="display:block; margin: 2rem auto; width: 70%;"} <p style="text-align:center; font-size: 15px; font-style: italic;">Ocenaudio config.</p>
+
+Then configure the ASIO4ALL.
+![image_alt](./assets/setup/asio4all_icon.png){: style="display:block; margin: 2rem auto; width: 70%;"} <p style="text-align:center; font-size: 15px; font-style: italic;">ASIO4ALL icon in windows menu.</p>
+
+Please check if all of the other devices are disabled and enable the "XAudio A2B Interface" only
+![image_alt](./assets/setup/asio4all_config.png){: style="display:block; margin: 2rem auto; width: 70%;"} <p style="text-align:center; font-size: 15px; font-style: italic;">Configuration of Asio4ALL.</p>
+
+Then we can go back to ocenaudio and generate the channels content that we want to play. 
+
+![image_alt](./assets/setup/ocenaudio_generate1.png){: style="display:block; margin: 2rem auto; width: 70%;"} <p style="text-align:center; font-size: 15px; font-style: italic;">Ocenaudio generate tone menu.</p>
+![image_alt](./assets/setup/ocenaudio_generate2.png){: style="display:block; margin: 2rem auto; width: 70%;"} <p style="text-align:center; font-size: 15px; font-style: italic;">Ocenaudio generate channels content.</p>
+Once you create the audio output you can start playing the audio using A2Bridge. 
+![image_alt](./assets/setup/ocenaudio_play.png){: style="display:block; margin: 2rem auto; width: 70%;"} <p style="text-align:center; font-size: 15px; font-style: italic;">Play generated sine wave.</p>
+
+The **status** command should inform about streaming in USB downstream.
+
+![image_alt](./assets/setup/status_streaming.png){: style="display:block; margin: 2rem auto; width: 70%;"} <p style="text-align:center; font-size: 15px; font-style: italic;">Status USB streaming</p>
+
+
