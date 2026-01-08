@@ -23,7 +23,8 @@ if (DEFINED A2BRIDGE_CORE_SOURCE_DIR)
   add_subdirectory(${A2BRIDGE_CORE_SOURCE_DIR} a2bridge_core_build)
 else()
   # public: core from binary package
-  find_package(a2bridge_core REQUIRED)
+  include(cmake/deps/A2BridgeCoreFetch.cmake)
+  find_package(a2bridge_core 1.0.0 REQUIRED)
 endif()
 
 
@@ -99,7 +100,7 @@ execute_process(
 
 add_definitions("-DVERSION_GIT_DESCRIPTION=\"${GIT_TAG_HASH}\"")
 
-set(TOOLS_DIR ${CMAKE_SOURCE_DIR}/tools)
+set(TOOLS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/tools)
 
 add_custom_command(TARGET ${TARGET_CM7}
         POST_BUILD
