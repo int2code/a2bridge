@@ -13,22 +13,35 @@ RUN apt-get -y update && \
     python3 \
     python3-pip \
     curl \
-    clang-format
+    clang-format \
+    gh 
 
 
 RUN apt-get -y install git
 RUN apt-get -y install dfu-util
 
-# get the compiler
-RUN wget https://developer.arm.com/-/media/Files/downloads/gnu/13.3.rel1/binrel/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi.tar.xz
-RUN tar -xf arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi.tar.xz
-ENV PATH $PATH:$PWD/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin
+# get the compiler - change below line to switch the STM version 
+ARG ARM_GNU_VERSION=13.3.rel1
+ARG ARM_GNU_TC=arm-gnu-toolchain-${ARM_GNU_VERSION}-x86_64-arm-none-eabi
+ARG ARM_GNU_PATH=/opt/${ARM_GNU_TC}
+
+RUN wget https://developer.arm.com/-/media/Files/downloads/gnu/13.3.rel1/binrel/${ARM_GNU_TC}.tar.xz && \
+    tar -xf ${ARM_GNU_TC}.tar.xz -C /opt
+RUN ls /opt/
+RUN ls ${ARM_GNU_PATH}/bin
+RUN ${ARM_GNU_PATH}/bin/arm-none-eabi-gcc --version
+ENV PATH="$PATH:${ARM_GNU_PATH}/bin"
 RUN arm-none-eabi-gcc --version
 
-# get protoc compiler
-RUN wget https://github.com/protocolbuffers/protobuf/releases/download/v30.2/protoc-30.2-linux-x86_64.zip
-RUN unzip protoc-30.2-linux-x86_64.zip -d protoc
-ENV PATH $PATH:$PWD/protoc/bin
+# get Protobufs protoc compiler
+ARG PROTOC_VERSION=30.2
+ARG PROTOC_FILE=protoc-${PROTOC_VERSION}-linux-x86_64
+ARG PROTOC_PATH=/opt/protoc
+
+RUN wget https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOC_VERSION}/${PROTOC_FILE}.zip && \
+    unzip ${PROTOC_FILE}.zip -d ${PROTOC_PATH}
+
+ENV PATH="$PATH:${PROTOC_PATH}/bin"
 RUN protoc --version
 
 COPY ./requirements.txt ./

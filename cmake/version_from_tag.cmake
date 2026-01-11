@@ -61,6 +61,7 @@ function(get_version_from_tag)
     else()
         # Strip common prefixes like v or V
         string(REGEX REPLACE "^[vV]" "" _tag_stripped "${_git_tag}")
+        string(REGEX REPLACE "[-dev]" "" _tag_stripped "${_tag_stripped}")
         
         # Validate and extract numeric x.y.z (or x.y or x)
         # Accept tags like: 2.4.4, 2.4, 2

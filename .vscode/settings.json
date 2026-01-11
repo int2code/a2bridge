@@ -1,0 +1,22 @@
+{
+    "files.associations": {
+        "libad243xreg.h": "c",
+        "libad243xcommon.h": "c"
+    },
+    "cmake.generator": "Ninja",
+    "cmake.buildDirectory": "${workspaceFolder}/build/local/debug",
+    "cmake.buildType": "Debug",
+    "C_Cpp.errorSquiggles": "disabled",
+    "C_Cpp.loggingLevel": "Debug",
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+    "C_Cpp.default.compileCommands": "${workspaceFolder}/build/debug/local/compile_commands.json",
+    "C_Cpp.inlayHints.parameterNames": "none",
+    "clangd.arguments": [
+        "--compile-commands-dir=${workspaceFolder}/build/local/debug"
+    ],
+    "editor.formatOnSave": true,
+    "editor.inlayHints.enabled": "off",
+    "C_Cpp.intelliSenseEngine": "disabled",
+    "clangd.enable": true,
+    "remote.containers.reuseWindow": false
+}
