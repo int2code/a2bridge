@@ -53,3 +53,13 @@ dkms.conf
 
 # debug information files
 *.dwo
+
+
+# build and artifacts 
+build/
+artifacts/
+CMakeCache.txt
+cmake_install.cmake
+CMakeFiles
+*.ninja
+__pycache__
