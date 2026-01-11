@@ -1,6 +1,17 @@
 cmake_minimum_required(VERSION 3.15.3)
 
+if (NOT DEFINED A2BRIDGE_CORE_SOURCE_DIR)
+# this will be performed only if the SDK is used outside int2code 
 
+# Include cmake tools from SDK 
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/sdk/cmake")
+include(gcc-arm-none-eabi)
+include(version_from_tag)
+
+# get the version from the git TAG
+get_version_from_tag()
+
+endif()
 
 project(a2bridge)
 
@@ -9,13 +20,24 @@ set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+# overwrite this locally if you want to test newer core version 
+set(A2BRIDGE_CORE_VERSION ${PRJ_VERSION})
+
 set(TARGET_CM7 ${PROJECT_NAME}_${CMAKE_BUILD_TYPE}_cm7)
+# do not remove parent scope, we needed for internal core development @int2code 
+set(TARGET_CM7 ${TARGET_CM7} PARENT_SCOPE)
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/artifacts)
+
+
+
 
 set(USB_VID 0x0483)
 set(USB_PID 0xA519)
 
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/artifacts)
+
 
 
 if (DEFINED A2BRIDGE_CORE_SOURCE_DIR)
@@ -24,7 +46,7 @@ if (DEFINED A2BRIDGE_CORE_SOURCE_DIR)
 else()
   # public: core from binary package
   include(cmake/deps/A2BridgeCoreFetch.cmake)
-  find_package(a2bridge_core 1.0.0 REQUIRED)
+  find_package(a2bridge_core ${A2BRIDGE_CORE_VERSION} REQUIRED)
 endif()
 
 
@@ -90,7 +112,7 @@ target_link_options(${TARGET_CM7} PRIVATE
         )
 
 
-
+if (NOT DEFINED GIT_TAG_HASH)
 find_package(Git)
 execute_process(
     COMMAND git describe --always --dirty --tags
@@ -99,6 +121,7 @@ execute_process(
     OUTPUT_STRIP_TRAILING_WHITESPACE)
 
 add_definitions("-DVERSION_GIT_DESCRIPTION=\"${GIT_TAG_HASH}\"")
+endif()
 
 set(TOOLS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/tools)
 
