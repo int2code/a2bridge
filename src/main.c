@@ -1,5 +1,4 @@
-extern void core_main();
-    
+// extern void core_main();
 
 // int main()
 // {
