@@ -65,7 +65,7 @@ target_link_libraries(${TARGET_CM7} PRIVATE
 # )
 
 target_sources(${TARGET_CM7} PUBLIC
-    # src/main.c
+    src/SdkInit.c
     # src/startup/system_stm32h7xx_dualcore_boot_cm4_cm7.c
     src/startup/startup_stm32h745xihx.s
     # src/startup/stm32h7xx_it.c
