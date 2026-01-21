@@ -5,9 +5,15 @@
  *
  */
 
-#include "Log.h"
+#include "Sdk.h"
+
+
+
 
 void Sdk_Init(void)
 {
-    LOG_INFO("SDK specific initialization");
+    // put here your project specific initialization code
+    /// @todo add LED blink
 }
+
+
