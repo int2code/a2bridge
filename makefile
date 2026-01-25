@@ -36,12 +36,6 @@ RelWithDebInfo:
 	@$(DOCKER) cmake -S . -B build/release -G "Ninja" -DCMAKE_BUILD_TYPE=RelWithDebInfo
 	@$(DOCKER) cmake --build build/release
 
-format:
-	@chmod +x $(DOCKER)
-	@$(DOCKER) sh $(FMT_SCRIPT)
-# 	@./$(DOCKER) $(FMT_SCRIPT)
- 	
-
 
 
 flash-dfu-debug:

@@ -9,8 +9,6 @@ else
     export GITHUB_TOKEN="invalidtoken"
 fi
 
-export GITHUB_TOKEN="$(gh auth token)"
-
 docker run --rm \
     -e GITHUB_TOKEN \
     -it \
