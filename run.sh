@@ -1,5 +1,16 @@
 #!/bin/bash
+
+set -e
+
+if command -v gh >/dev/null 2>&1; then
+    export GITHUB_TOKEN="$(gh auth token)"
+else
+    export GITHUB_TOKEN="invalidtoken"
+fi
+
+
 docker run --rm \
+    -e GITHUB_TOKEN \
     --volume=${PWD}:${PWD} \
     --workdir=${PWD} \
     --privileged \
