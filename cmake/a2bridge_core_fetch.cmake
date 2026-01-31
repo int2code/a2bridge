@@ -2,7 +2,8 @@ include_guard(GLOBAL)
 
 
 function(fetch_a2bridge_core build_type version is_ver_dirty ) 
-  set(_git_hub_repo "https://github.com/int2code/a2bridge/releases/download/v")
+  
+set(_git_hub_repo "https://github.com/int2code/a2bridge/releases/download/v")
   if(${is_ver_dirty})
     set(_asset "a2bridge_core-${build_type}-${version}-dev.tar.gz")
     set(_url   "${_git_hub_repo}${version}-dev/${_asset}")

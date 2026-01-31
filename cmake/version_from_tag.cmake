@@ -1,3 +1,7 @@
+include_guard(GLOBAL
+
+)
+
 # cmake/version_from_tag.cmake
 # Exports:
 #   PROJECT_VERSION        (numeric: 2.4.4)
@@ -11,7 +15,7 @@ function(get_version_from_tag)
     set(_fallback_version "0.0.0")
     set(_git_commit "unknown")
     set(_fallback_full    "0.0.0-${_git_commit}")
-    set(_dirty_flag 1)
+    set(_dirty_flag 0)
     
 
     if(NOT Git_FOUND)
@@ -35,8 +39,8 @@ function(get_version_from_tag)
     endif()
     message("Git tag: " ${_git_describe})
 
-    if (NOT _git_describe MATCHES "dirty")
-        set(_dirty_flag 0)
+    if (_git_describe MATCHES "-dirty$|-[0-9]+-g[0-9a-f]+$")
+        set(_dirty_flag 1)
     endif()
 
     if(_git_describe MATCHES "-g([0-9a-fA-F]+)")
