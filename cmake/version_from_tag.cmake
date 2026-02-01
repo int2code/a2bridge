@@ -25,16 +25,19 @@ function(get_version_from_tag)
         return()
     endif()
 
+    message("Git describe working dir: " ${CMAKE_SOURCE_DIR})
     # -------- Get full describe 
     execute_process(
         COMMAND "${GIT_EXECUTABLE}" describe --tags --dirty --always
         WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
         OUTPUT_VARIABLE _git_describe
         OUTPUT_STRIP_TRAILING_WHITESPACE
-        ERROR_QUIET
+        ERROR_VARIABLE _git_err
         RESULT_VARIABLE _desc_rc
     )
+    message("Git tag 1 : " ${_git_describe})
     if(NOT _desc_rc EQUAL 0 OR _git_describe STREQUAL "")
+        message("Git error " ${_git_err} ". Failing to default version")
         set(_git_describe "${_fallback_full}")
     endif()
     message("Git tag: " ${_git_describe})
