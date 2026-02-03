@@ -60,7 +60,7 @@ target_link_libraries(${TARGET_CM7} PRIVATE
 target_sources(${TARGET_CM7} PUBLIC
     src/startup/startup_stm32h745xihx.s
     src/SdkInit.c
-    src/SdkTasks.c
+    src/SdkExampleTasks.c
 )
 
 
