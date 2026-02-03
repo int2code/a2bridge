@@ -5,7 +5,7 @@ include_guard(GLOBAL)
 # Exports (API kept):
 #   PRJ_VERSION             (numeric: 2.4.6)
 #   PRJ_VERSION_FULL        (string:  v2.4.6-0-g<hash>-dirty OR v2.4.6-dirty OR <hash>-dirty)
-#   PRJ_VERSION_IS_DIRTY    (0/1)
+#   PRJ_VERSION_IS_DIRTY    (0/1)   <-- dirty if distance>0 OR local changes
 #   PRJ_VERSION_MAJOR/MINOR/PATCH
 #   PRJ_VERSION_GIT_COMMIT  (short hash)
 #
@@ -36,7 +36,7 @@ function(get_version_from_tag)
     return()
   endif()
 
-  # 1) Get tags reachable from HEAD (plain names, no %() formatting issues)
+  # 1) Get tags reachable from HEAD
   execute_process(
     COMMAND "${GIT_EXECUTABLE}" tag --merged HEAD
     WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
@@ -47,12 +47,11 @@ function(get_version_from_tag)
 
   if(NOT _tags STREQUAL "")
     string(REPLACE "\n" ";" _tag_list "${_tags}")
-    # Sort by version-ish order; tags are vX.Y.Z so NATURAL works well
     list(SORT _tag_list COMPARE NATURAL ORDER DESCENDING)
     list(GET _tag_list 0 _best_tag)
   endif()
 
-  # 2) git describe (keep dirty/hash/distance). Use --match to break ties deterministically.
+  # 2) git describe (keep hash + distance; local changes add -dirty)
   if(NOT _best_tag STREQUAL "")
     execute_process(
       COMMAND "${GIT_EXECUTABLE}" describe --tags --dirty --long --always --match "${_best_tag}"
@@ -78,10 +77,36 @@ function(get_version_from_tag)
     set(_git_describe "${_fallback_full}")
   endif()
 
+  # 2a) Dirty semantics:
+  #     - local changes => git describe ends with -dirty
+  #     - not exactly on tag commit => distance in "<tag>-<N>-g<hash>" is N>0
+  set(_worktree_dirty 0)
+  set(_ahead_of_tag 0)
+  set(_distance 0)
+
   if(_git_describe MATCHES "-dirty$")
-    set(_dirty_flag 1)
+    set(_worktree_dirty 1)
   endif()
 
+  if(_git_describe MATCHES "-([0-9]+)-g[0-9a-fA-F]+")
+    set(_distance "${CMAKE_MATCH_1}")
+    if(NOT _distance STREQUAL "0")
+      set(_ahead_of_tag 1)
+    endif()
+  endif()
+
+  if(_worktree_dirty OR _ahead_of_tag)
+    set(_dirty_flag 1)
+  else()
+    set(_dirty_flag 0)
+  endif()
+
+  # Ensure PRJ_VERSION_FULL carries -dirty if OUR dirty flag is set
+  if(_dirty_flag AND NOT _git_describe MATCHES "-dirty$")
+    set(_git_describe "${_git_describe}-dirty")
+  endif()
+
+  # 2b) Commit hash
   if(_git_describe MATCHES "-g([0-9a-fA-F]+)")
     set(_git_commit "${CMAKE_MATCH_1}")
   else()
@@ -98,7 +123,7 @@ function(get_version_from_tag)
   endif()
 
   # 3) Numeric version from tag (vX.Y.Z) or fallback
-  set(_maj 0) 
+  set(_maj 0)
   set(_min 0)
   set(_pat 0)
   set(_numeric "${_fallback_version}")
@@ -130,5 +155,5 @@ function(get_version_from_tag)
   # 5) Messages (useful, not spammy)
   message(STATUS "Version:  ${_numeric} (tag: ${_best_tag})")
   message(STATUS "Describe: ${_git_describe}")
-  message(STATUS "Commit:   ${_git_commit}  Dirty: ${_dirty_flag}")
+  message(STATUS "Commit:   ${_git_commit}  Dirty: ${_dirty_flag} (distance: ${_distance})")
 endfunction()
