@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "name": "STM32H745xx-config",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "STM32H745xx"
+            ],
+            "compilerPath": "arm-none-eabi-gcc",
+            "cStandard": "c11",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "${default}"
+        },
+        {
+            "name": "CMake Tools",
+            "configurationProvider": "ms-vscode.cmake-tools"
+        }
+    ],
+    "version": 4
+}

@@ -1,0 +1,175 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "Flash Debug",
+            "command": "${STM32_PRG_PATH}/STM32_Programmer_CLI",
+            "args": [
+                "--connect",
+                "port=swd",
+                "--download",
+                "${workspaceFolder}/artifacts/a2bridge_debug_cm7.elf",
+                "-hardRst",
+                "-rst",
+                "--start"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "hide": true
+        },
+        {
+            "label": "Build+Flash Debug",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "docker-build-debug",
+                "Flash Debug"
+            ],
+        },
+        {
+            "type": "shell",
+            "label": "docker-build-debug",
+            "command": "make debug",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "hide": true,
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "clear": true,
+                "showReuseMessage": false
+            },
+        },
+        {
+            "label": "Build+Flash Debug local",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "local-build-debug",
+                "Flash Debug"
+            ],
+        },
+        {
+            "type": "shell",
+            "label": "local-build-debug",
+            "command": "make local-debug",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "hide": true,
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "clear": true,
+                "showReuseMessage": false
+            },
+        },
+        {
+            "type": "shell",
+            "label": "Flash Release",
+            "command": "${STM32_PRG_PATH}/STM32_Programmer_CLI",
+            "args": [
+                "--connect",
+                "port=swd",
+                "--download",
+                "${workspaceFolder}/artifacts/a2bridge_release_cm7.elf",
+                "-hardRst",
+                "-rst",
+                "--start"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "hide": true
+        },
+        {
+            "label": "Build+Flash Release",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "docker-build-release",
+                "Flash Release"
+            ],
+        },
+        {
+            "type": "shell",
+            "label": "docker-build-release",
+            "command": "make release",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "hide": true,
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "clear": true,
+                "showReuseMessage": false
+            },
+        },
+        {
+            "label": "Build+Flash Release local",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "local-build-release",
+                "Flash Release"
+            ],
+        },
+        {
+            "type": "shell",
+            "label": "local-build-release",
+            "command": "make local-release",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "hide": true,
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "clear": true,
+                "showReuseMessage": false
+            },
+        },
+        {
+            "type": "shell",
+            "label": "clean",
+            "command": "make clean",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "hide": true,
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "clear": true,
+                "showReuseMessage": false
+            },
+        },
+    ]
+}

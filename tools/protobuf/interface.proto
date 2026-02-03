@@ -1,0 +1,230 @@
+syntax = "proto3";
+import "nanopb.proto";
+
+enum A2BFaultLocation
+{
+  A2B_FAULT_LOCATION_UNSPECIFIED = 0;
+  A2B_FAULT_LOCATION_MASTER = 1;
+  A2B_FAULT_LOCATION_SLAVE = 2;
+}
+
+enum SlaveA2BState
+{
+  SLAVE_A2B_STATE_UNSPECIFIED = 0;
+  SLAVE_A2B_STATE_INIT = 1;
+  SLAVE_A2B_STATE_WAIT_DISCOVER = 2;
+  SLAVE_A2B_STATE_READY = 3;
+  SLAVE_A2B_STATE_NOT_READY = 4;
+}
+
+enum UsbAudioStreamState
+{
+  USB_AUDIO_STREAM_STATE_UNSPECIFIED = 0;
+  USB_AUDIO_STREAM_STATE_IDLE = 1;
+  USB_AUDIO_STREAM_STATE_STREAMING = 2;
+}
+
+enum DeviceState
+{
+  DEVICE_STATE_UNSPECIFIED = 0;
+  DEVICE_STATE_BOOT = 1;
+  DEVICE_STATE_NORMAL = 2;
+  DEVICE_STATE_IMPAIRED = 3;
+  DEVICE_STATE_ERROR = 4;
+}
+
+enum I2COverDistanceAccessType
+{
+  I2C_OVER_DISTANCE_UNSPECIFIED = 0;
+  I2C_OVER_DISTANCE_WRITE = 1;
+  I2C_OVER_DISTANCE_READ = 2;
+}
+
+enum ConfigJsonState
+{
+  CONFIG_JSON_STATE_UNSPECIFIED = 0;
+  CONFIG_JSON_STATE_VALID = 1;
+  CONFIG_JSON_STATE_INVALID = 2;
+}
+
+enum A2BMailboxAccessType
+{
+  A2B_MAILBOX_ACCESS_TYPE_UNSPECIFIED = 0;
+  A2B_MAILBOX_ACCESS_TYPE_WRITE = 1;
+  A2B_MAILBOX_ACCESS_TYPE_READ = 2;
+}
+
+enum A2BMailboxAccessStatus
+{
+  A2B_MAILBOX_STATUS_UNSPECIFIED = 0;
+  A2B_MAILBOX_STATUS_OK = 1;
+  A2B_MAILBOX_STATUS_GENERAL_FAIL = 2;
+  A2B_MAILBOX_STATUS_NOT_EMPTY = 3;
+  A2B_MAILBOX_STATUS_NOT_FULL = 4;
+}
+
+message ResetRequest {
+  optional bool dummy = 1;
+}
+
+message StatusRequest {
+  optional bool dummy = 1;
+}
+
+message A2BDiscoverRequest {
+  optional bool dummy = 1;
+}
+
+message InfoRequest
+{
+  optional bool dummy = 1;
+}
+
+message SetSerialRequest
+{
+  string serial_number = 1;
+  optional bool lock = 2;
+}
+
+message I2COverDistanceRequest
+{
+  I2COverDistanceAccessType access_type = 1;
+  optional uint32 peripheral_i2c_addr = 2;
+  uint32 node = 3;
+  message Data
+  {
+    uint32 reg = 4;
+    uint32 value = 5;
+  }
+
+  repeated Data data = 6 [(nanopb).max_count = 10];
+}
+
+message RegisterDumpRequest
+{
+  optional uint32 node_number = 1;
+}
+
+message RegisterDumpResponse
+{
+  message Data
+  {
+    uint32 reg = 1;
+    uint32 value = 2;
+  }
+  repeated Data data = 3 [(nanopb).max_count = 200];
+}
+
+message I2COverDistanceResponse
+{
+  I2COverDistanceAccessType access_type = 1;
+  repeated uint32 value = 2 [(nanopb).max_count = 10];
+}
+
+message A2BMailboxTransferRequest
+{
+  uint32 mailbox_id = 1;
+  A2BMailboxAccessType access_type = 2;
+  uint32 node = 3;
+  uint32 bytes = 4;
+  repeated uint32 data = 5[(nanopb).max_count = 4];
+}
+
+message A2BMailboxTransferResponse
+{
+  uint32 mailbox_id = 1;
+  A2BMailboxAccessType access_type = 2;
+  A2BMailboxAccessStatus access_status = 3;
+  repeated uint32 data = 4[(nanopb).max_count = 4];
+}
+
+message NoDataResponse
+{
+  optional bool dummy = 1;
+}
+
+message StatusRespRoleA2BMaster
+{
+  message A2bFault
+  {
+    uint32 fault = 1;
+    A2BFaultLocation location = 2;
+    optional uint32 slave_with_fault = 3;
+  }
+
+  uint32 a2b_slaves_discovered = 1;
+  optional A2bFault a2b_fault = 2;
+}
+
+message StatusRespRoleA2BSlave
+{
+  SlaveA2BState a2b_state = 1;
+}
+
+message StatusResponse
+{
+  UsbAudioStreamState usb_audio_downstream_state = 1;
+  UsbAudioStreamState usb_audio_upstream_state = 2;
+  DeviceState device_state = 3;
+  ConfigJsonState config_json_state = 4;
+
+  oneof oneofmsg
+  {
+    StatusRespRoleA2BMaster status_master = 5;
+    StatusRespRoleA2BSlave status_slave = 6;
+  }
+}
+
+message InfoResponse
+{
+  uint32 hardware_revision = 1;
+  string software_revision = 2;
+  string serial_number = 3;
+}
+
+message PositiveResponse
+{
+  oneof oneofmsg
+  {
+    NoDataResponse no_data_response = 1;
+    StatusResponse status_response = 2;
+    InfoResponse info_response = 3;
+    I2COverDistanceResponse i2c_over_distance_response = 4;
+    A2BMailboxTransferResponse a2b_mailbox_transfer_response = 5;
+    RegisterDumpResponse register_dump_response = 6;
+  }
+}
+
+message NegativeResponse
+{
+  oneof oneofmsg
+  {
+    bool no_data = 1;
+    string text_error = 2;
+  }
+}
+
+// #################### Communication packets ####################
+
+message RequestPacket {
+  oneof oneofmsg
+  {
+    ResetRequest reset_request = 1;
+    A2BDiscoverRequest a2b_discover_request = 2;
+    StatusRequest status_request = 3;
+    InfoRequest info_request = 4;
+    SetSerialRequest set_serial_request = 5;
+    I2COverDistanceRequest i2c_over_distance_request = 6;
+    A2BMailboxTransferRequest a2b_mailbox_transfer_request = 7;
+    RegisterDumpRequest register_dump_request = 8;
+  }
+}
+
+message ResponsePacket {
+  oneof oneofmsg
+  {
+    PositiveResponse positive_response = 1;
+    NegativeResponse negative_response = 2;
+  }
+}
+
