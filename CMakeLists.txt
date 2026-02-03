@@ -51,24 +51,16 @@ endif()
 
 add_executable(${TARGET_CM7})
 
-# target_link_options(${TARGET_CM7} PRIVATE
-#     ""
-# )
 target_link_libraries(${TARGET_CM7} PRIVATE 
     -Wl,--whole-archive
     a2bridge_core
     -Wl,--no-whole-archive
 )
 
-# target_link_options(${TARGET_CM7} PRIVATE
-#     "-Wl,--no-whole-archive"
-# )
-
 target_sources(${TARGET_CM7} PUBLIC
-    src/SdkInit.c
-    # src/startup/system_stm32h7xx_dualcore_boot_cm4_cm7.c
     src/startup/startup_stm32h745xihx.s
-    # src/startup/stm32h7xx_it.c
+    src/SdkInit.c
+    src/SdkTasks.c
 )
 
 

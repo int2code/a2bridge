@@ -108,4 +108,4 @@ You can flash the A2Bridge with the new build SW using following command
 dfu-util --download artifacts/a2bridge_release_cm7.bin.dfu --reset
 ```
 
-***ATTENTION***: It is known problem that the DFU 
+For more information please refer to [UserGuide/Firmware Update](https://int2code.github.io/a2bridge/dfu/)
