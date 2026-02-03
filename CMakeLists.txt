@@ -12,8 +12,11 @@ if (NOT DEFINED A2BRIDGE_CORE_SOURCE_DIR)
     # get the version from the git TAG
     get_version_from_tag()
     set(A2BRIDGE_CORE_VERSION ${PRJ_VERSION})
-    # set(A2BRIDGE_CORE_PKG_VER )
+
 endif()
+
+
+
 
 project(a2bridge)
 
@@ -41,10 +44,12 @@ if (DEFINED A2BRIDGE_CORE_SOURCE_DIR)
     # internal: core from source
     add_subdirectory(${A2BRIDGE_CORE_SOURCE_DIR} a2bridge_core_build)
 else()
-    
     fetch_a2bridge_core("release" ${A2BRIDGE_CORE_VERSION} ${PRJ_VERSION_IS_DIRTY})
-    
-    find_package(a2bridge_core ${A2BRIDGE_CORE_VERSION} REQUIRED)
+    if (SKIP_CORE_VERSION_CHECK)
+        find_package(a2bridge_core REQUIRED)
+    else()
+        find_package(a2bridge_core ${A2BRIDGE_CORE_VERSION} REQUIRED)
+    endif()
 endif()
 
 

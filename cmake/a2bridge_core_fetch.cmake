@@ -14,7 +14,7 @@ set(_git_hub_repo "https://github.com/int2code/a2bridge/releases/download/v")
   
   
 
-  set(_deps_root    "${CMAKE_BINARY_DIR}/_deps/a2bridge_core/${version}/${build_type}")
+  set(_deps_root    "${CMAKE_BINARY_DIR}/_deps/a2bridge_core/${build_type}")
   set(_zip_path     "${_deps_root}/${_asset}")
   set(_extract_root "${_deps_root}/extract")
 
