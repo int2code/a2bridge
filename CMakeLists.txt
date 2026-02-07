@@ -111,16 +111,6 @@ target_link_options(${TARGET_CM7} PRIVATE
     )
 
 
-if (NOT DEFINED GIT_TAG_HASH)
-    find_package(Git)
-    execute_process(
-        COMMAND git describe --always --dirty --tags
-        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-        OUTPUT_VARIABLE GIT_TAG_HASH
-        OUTPUT_STRIP_TRAILING_WHITESPACE)
-
-    add_definitions("-DVERSION_GIT_DESCRIPTION=\"${GIT_TAG_HASH}\"")
-endif()
 
 set(TOOLS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/tools)
 

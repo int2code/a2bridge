@@ -11,6 +11,8 @@ fi
 
 docker run --rm \
     -e GITHUB_TOKEN \
+    -v /etc/localtime:/etc/localtime:ro \
+    -v /etc/timezone:/etc/timezone:ro \
     --volume=${PWD}:${PWD} \
     --workdir=${PWD} \
     --privileged \
