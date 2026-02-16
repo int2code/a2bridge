@@ -5,6 +5,7 @@
     - [Docker](#docker)
     - [Build on local machine](#build-on-local-machine)
     - [Compile the A2Bridge software](#compile-the-a2bridge-software)
+    - [Selecting A2Bridge core library version ](#selecting-a2bridge-core-library-version)
     - [Build results](#build-results)
   - [Flash the A2Bridge](#flash-the-a2bridge)
     - [Using DFU](#using-dfu)
@@ -110,16 +111,11 @@ You can compile the project also using directly the CMake commands - please chec
 ### Selecting A2Bridge core library version 
 
 By default the build will try to fetch the core library corresponding to the version which your repo based on (the last seen tag in your tree will decide about the version).
-But if you want to use another version, or you have stared your own project base on this repo and there is no tag in your history corresponding to th A2Bridge core library version,
-you will have to fix the version by hand. For that edit the main [CMakeLists.txt](CMakeLists.txt) in following way:
-- comment out those two lines:
-```
-get_version_from_tag()
-set(A2BRIDGE_CORE_VERSION ${PRJ_VERSION})
-```
-- and replace them with 
-```
+But if you want to use another version, or you have stared your own project base on this repo and there is no tag in your history corresponding to th A2Bridge core library version, you will have to fix the version by hand. For that edit the main [CMakeLists.txt](CMakeLists.txt) in following way (setting the version to v3.0.2 release):
 
+```cmake
+set(A2BRIDGE_CORE_VERSION "3.0.2" CACHE  STRING  "A2Bridge core lib version")
+set(A2BRIDGE_VERSION_DEV 0 CACHE BOOL "A2Bridge core dev version flag")
 ```
 
 ### Build results 
