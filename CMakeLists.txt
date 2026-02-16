@@ -14,8 +14,8 @@ if (NOT DEFINED A2BRIDGE_CORE_SOURCE_DIR)
     # If you want use a certain version of the A2Bridge core library, replace below 2 lines and instead use fixed version (here example for version v3.0.2):
     # set(A2BRIDGE_CORE_VERSION "3.0.2" CACHE "A2Bridge core lib version")
     # set(A2BRIDGE_VERSION_DEV ${PRJ_VERSION_IS_DIRTY} CACHE "A2Bridge core dev version flag")
-    set(A2BRIDGE_CORE_VERSION "${PRJ_VERSION}" CACHE "A2Bridge core lib version")
-    set(A2BRIDGE_VERSION_DEV ${PRJ_VERSION_IS_DIRTY} CACHE "A2Bridge core dev version flag")
+    set(A2BRIDGE_CORE_VERSION "${PRJ_VERSION}" CACHE  STRING  "A2Bridge core lib version")
+    set(A2BRIDGE_VERSION_DEV 0 CACHE BOOL "A2Bridge core dev version flag")
     
 
 endif()
