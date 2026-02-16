@@ -9,9 +9,14 @@ if (NOT DEFINED A2BRIDGE_CORE_SOURCE_DIR)
     include(version_from_tag)
     include(a2bridge_core_fetch)
 
-    # get the version from the git TAG
     get_version_from_tag()
-    set(A2BRIDGE_CORE_VERSION ${PRJ_VERSION})
+    # get the version from the git TAG
+    # If you want use a certain version of the A2Bridge core library, replace below 2 lines and instead use fixed version (here example for version v3.0.2):
+    # set(A2BRIDGE_CORE_VERSION "3.0.2" CACHE "A2Bridge core lib version")
+    # set(A2BRIDGE_VERSION_DEV ${PRJ_VERSION_IS_DIRTY} CACHE "A2Bridge core dev version flag")
+    set(A2BRIDGE_CORE_VERSION "${PRJ_VERSION}" CACHE "A2Bridge core lib version")
+    set(A2BRIDGE_VERSION_DEV ${PRJ_VERSION_IS_DIRTY} CACHE "A2Bridge core dev version flag")
+    
 
 endif()
 
@@ -40,11 +45,8 @@ set(USB_VID 0x0483)
 set(USB_PID 0xA519)
 
 
-if (DEFINED A2BRIDGE_CORE_SOURCE_DIR)
-    # internal: core from source
-    add_subdirectory(${A2BRIDGE_CORE_SOURCE_DIR} a2bridge_core_build)
-else()
-    fetch_a2bridge_core("release" ${A2BRIDGE_CORE_VERSION} ${PRJ_VERSION_IS_DIRTY})
+if (NOT DEFINED A2BRIDGE_CORE_SOURCE_DIR)
+    fetch_a2bridge_core("release" ${A2BRIDGE_CORE_VERSION} ${A2BRIDGE_VERSION_DEV})
     if (SKIP_CORE_VERSION_CHECK)
         find_package(a2bridge_core REQUIRED)
     else()

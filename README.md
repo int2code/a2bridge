@@ -106,6 +106,22 @@ You can compile the project also using directly the CMake commands - please chec
 
 ***ATTENTION***: Docker builds are done in the `build/debug` and `build/release`. Mixing the locations with local builds will lead to errors. 
 
+
+### Selecting A2Bridge core library version 
+
+By default the build will try to fetch the core library corresponding to the version which your repo based on (the last seen tag in your tree will decide about the version).
+But if you want to use another version, or you have stared your own project base on this repo and there is no tag in your history corresponding to th A2Bridge core library version,
+you will have to fix the version by hand. For that edit the main [CMakeLists.txt](CMakeLists.txt) in following way:
+- comment out those two lines:
+```
+get_version_from_tag()
+set(A2BRIDGE_CORE_VERSION ${PRJ_VERSION})
+```
+- and replace them with 
+```
+
+```
+
 ### Build results 
 
 You can find the build results in artifacts directory.
