@@ -1,14 +1,11 @@
 # JSON configuration
 
-The mass storage class USB endpoint is used to pass the needed A2B
-configuration with JSON file.  
-To access it opens the CONFIG.TXT file. **Please be aware that JSON
-configuration is case sensitive.** By default, it contains the following
-configuration
+The mass storage class USB endpoint is used to pass the needed A2B configuration as a JSON file. 
+To access it, opens the CONFIG.TXT file. **Please be aware that JSON configuration is case sensitive.** By default, it contains the following configuration:
 
 ```json
 {
-    "Version": "1.31",
+    "Version": "x.xx",
     "Name": "Default",
     "ResetOnNew": "True",
     "A2BRole": "Master",
@@ -29,6 +26,7 @@ configuration
       "SlavesOnBus": 1,
       "DnSlots": 8,
       "UpSlots": 8,
+      "AutoDiscovery": "False",
       "SlaveConfiguration":[
         {
           "Node": 0,
@@ -89,12 +87,8 @@ If this option is set, A2Bridge will start automatically in protobuf COM port mo
 Voltage in mV requested to supply connected to USB power delivery port. This voltage will be transfered to A2B bus.
   
 ## AudioRouteMatrixDownstream 
-Matrix of the channels transmitted to
-the A2B bus.  
-Each row is an output channel from the USB interface and each element
-within a row is an A2B output channel to which the corresponding USB
-channel’s audio will be routed.
-```
+Matrix of the channels transmitted to the A2B bus. Each row is an output channel from the USB interface and each element within a row is an A2B output channel to which the corresponding USB channel’s audio will be routed.
+```json
 "AudioRouteMatrixDownstream": [
     [A2B Channel, A2B Channel …], - Channel 1 coming from USB
     [A2B Channel, A2B Channel …], - Channel 2 coming from USB
@@ -104,7 +98,7 @@ channel’s audio will be routed.
 
 As an example we will create the configuration in which there will be 3 USB input channels and 10 A2B output channels. We want to forward 1st USB channel to A2B channels: 1,2,3,4,5,6. 2nd USB channel will be forwarded to 7,8 A2B channels and the last 3rd channels will be forwarded to 9th A2B channel.
 
-```
+```json
 "AudioRouteMatrixDownstream": [
     [1, 2, 3, 4, 5, 6], - USB Channel 1 -> A2B Channels 1,2,3,4,5,6
     [7, 8], - USB Channel 2 -> A2B Channels 7,8
@@ -113,12 +107,9 @@ As an example we will create the configuration in which there will be 3 USB inpu
 ```
 
 ## AudioRouteMatrixUpstream 
-Matrix of the channels received from A2B
-bus and transmitted to USB bus. Each row represents A2B channel received
-from the bus and each element within a row is an USB output channel
-number.
+Matrix of the channels received from A2B bus and transmitted to USB bus. Each row represents A2B channel received from the bus and each element within a row is an USB output channel number.
 
-!!! info inline end "Attention:"
+!!! info Attention:
 
     It works opposite to AudioRouteMatrixDownstream.
   
@@ -135,6 +126,9 @@ Number of down slots going out from the device.
   
 ### UpSlots 
 Number of the up slots coming to the device.  
+
+### AutoDiscovery
+Setting this flag to true will cause the A2B discovery to be triggered every 500ms as long as the A2Bridge doesn't reach the Normal state (A2B discovery successful)
   
 ### SlaveConfiguration 
 Contains the table of the slave configurations. Each slave configuration should contain following properties:
@@ -185,8 +179,7 @@ When not set SYNC pin is active for one BCLK cycle at the start of each sampling
 ![image_alt](assets/image4.png)
 
 ##### INV 
-Invert Sync signal. When set falling edge of sync references
-  the first channel otherwise it is rising edge.
+Invert Sync signal. When set falling edge of sync references the first channel otherwise it is rising edge.
 
 ##### RXBCLKINV 
 When this flag is set DRX signal is sampled on falling
@@ -204,12 +197,10 @@ When this option is set, the channels are interleaved between TDM lines.
 ![image_alt](assets/image5.png)
 
 ## A2BSlaveConfig 
-contains the following options used when A2BRole
-set to Slave:
+contains the following options used when A2BRole set to Slave:
 
 #### TdmRxChannels
-Number of TDM RX channels (from A2B transceiver to
-  slave µC)
+Number of TDM RX channels (from A2B transceiver to slave µC)
 
 #### TdmTxChannels
 Number of TDM TX channels (from slave µC to A2B transceiver)

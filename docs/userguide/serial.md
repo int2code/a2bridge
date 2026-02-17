@@ -1,48 +1,89 @@
-# Virtual COM port communication
+# Serial COM port communication
 
 ## Human readable console
 
-One of the USB endpoints is virtual COM port which can be controlled as
-any other COM port e.g. with Putty serial. Since it is USB virtal COM
-port **the baudrate can be set to any value.** There are few commands
-available on COM console depending on the device A2B role.
+After connecting to Host PC the A2Bridge will register in your PC a virtual COM port which can be used as a regular serial port for communicating with the A2Bridge over command line or python library. Since it is USB virtual COM port **the baud rate can be set to any value.** 
 
-![image_alt](assets/image6.tmp)
+Under Windows OS you can find the number of the COM port in the device manager. 
+As a tool to work with the A2Bridge we suggest [teraterm](https://github.com/TeraTermProject/teraterm) since, opposite to PuTTY, it doesn't request restarting the session every time the new configuration of the Bridge will be stored and the device restarts. 
+
+Under linux OS, you can find the corresponding serial port under `/dev/ttyACMx`. You can use 
 
 
-### Console commands in Master mode.
+![image_alt](assets/image6.png)
+
+There are few commands available on COM console depending on the A2B mode configured.
+
+### Console commands in A2B Master mode.
 
 **Following console commands are available in Master mode:**
+#### help 
+Prints all available command's help. 
 
 #### reset 
-Resets the device
+Resets the device. Invoking this command will cause the device to get disconnected from Host PC and reconnected after a while. 
 
 #### info 
 Prints the information about the device
+```bash
+A2Bridge:~$ info
+Hardware revision: 1
+Software version: v3.0.2-3-g0f3fe09-dirty
+Serial number: 000000030
+Chip used: AD2435
+RESULT: OK
+A2Bridge:~$
+```
 
 #### status 
 Prints the status of the device. Contains the information about the number of slaves discovered and current A2B status.
+```bash
+A2Bridge:~$ status
+Device status:
+        Device state: Impaired
+        USB downstream: Idle
+        USB upstream: Idle
+        Config "Default" JSON: valid
+        A2B Cable diagnostic: No fault detected
+        Power Delivery: disconnected
+        A2B slaves discovered: 0
+        A2B status: Fault - timeout, at slave: 0
+RESULT: OK
+A2Bridge:~$ 
+```
+The `Device state` can have following values:
+- `Imparied` not all slaves configured to be present on the bus have been discovered 
+- `Normal` all configured slaves have been discovered and connected, ready to play audio ove A2B 
+- `Error` the device detected either configuration, A2B bus or internal error and must be restarted 
+
 
 #### resetjson 
 resets the CONFIG.TXT Json file to default one.
 
 #### discover
-Performs A2B discovery and updates the number of
-discovered A2B slaves.
+Triggers the A2B bus discovery process
 
 #### switchproto
-Switches COM port to protobuf mode
+Switches COM port to protobuf mode.
+!!! info Attention:
+    After calling this command you will be not able to use command line until reset of the device (assuming the corresponding configuration is set to command line - see [RunInProtobufMode](json.md/#runinprotobufmode))
+
 
 #### loglevel
-Changes the log level. Must to be set to one of these values - \["off", "info", "warning", "error"\]
+Changes the log level. Must to be set to one of these values - "off", "debug, "info", "warning", "error". You can change the log level also using the configuration file.
+Changes done over command line will be not stored in the device. After restart the log level will be reset to the level configured in the config file. 
 
 #### regs
 Prints the A2B transceiver registers and its values. If the number of subnode is provided (in master mode) then prints the register values from the subnode transceiver.
-Usage: regs / regs 0
+Usage: 
+```bash
+A2Bridge:~$ regs
+...
+A2Bridge:~$ regs 0
+```
 
 
-
-### Console commands in Slave mode.
+### Console commands in A2B Slave mode.
 
 **Following console commands are available in Slave mode:**
 
@@ -63,7 +104,7 @@ Switches COM port to protobuf mode
 
 ## Protobuf mode
 
-Device can be set to use the protobuf mode via UART instead of text mode.
+Device can be switch to use the binary communication over protobuf protocol. In that case the ready to use python library available under: [XAudio Lib](https://github.com/int2code/xaudio)
 
 ### Reset
 Resets the device

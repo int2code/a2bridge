@@ -92,7 +92,7 @@ After the device is successfully connected to the host PC it will be presented a
 - DFU - Device Firmware Update
 - CDC - Virtual COM port 
 
-<img src="./assets/image2.tmp"/>
+<img src="./assets/image2.png"/>
 
 
 External audio device endpoints are used to transmit or receive audio data to/from A2Bridge.

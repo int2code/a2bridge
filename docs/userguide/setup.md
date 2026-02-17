@@ -2,8 +2,9 @@
 
 ## Windows setup
 
-By default, Windows OS cannot transmit more than 2 output channels to
-the output. To use more than 2 output channels additional drivers need
+You do not have to make any pre-installation when your Host PC uses Windows OS. It's enough to just plug the A2Bridge to any free USB connector using delivered USB cable. 
+
+But by default, Windows OS cannot transmit more than 2 audio channels to or from the USB audio devices. To use more than 2 audio channels, additional drivers need
 to be installed (Check [Download – ASIO4ALL Official
 Home](https://asio4all.org/about/download-asio4all/)). After
 installation of additional drivers, it can be used in programs like Audacity or ocenaudio.
