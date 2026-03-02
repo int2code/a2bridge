@@ -1,0 +1,849 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../json/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+    
+    
+      
+        <title>Setup - A2Bridge User Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../layout.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#setup" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="A2Bridge User Guide" class="md-header__button md-logo" aria-label="A2Bridge User Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            A2Bridge User Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Setup
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="A2Bridge User Guide" class="md-nav__button md-logo" aria-label="A2Bridge User Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    A2Bridge User Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#windows-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Windows setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linux-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linux setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a2bridge-as-a-master" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A2Bridge as a master
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="A2Bridge as a master">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#audio-produced-with-python-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audio produced with python script
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audio-produced-with-ocenaudio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audio produced with ocenaudio
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../json/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JSON configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../serial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Serial COM port communication
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dfu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firmware Update
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#windows-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Windows setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linux-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linux setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a2bridge-as-a-master" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A2Bridge as a master
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="A2Bridge as a master">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#audio-produced-with-python-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audio produced with python script
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audio-produced-with-ocenaudio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audio produced with ocenaudio
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="setup">Setup</h1>
+<h2 id="windows-setup">Windows setup</h2>
+<p>You do not have to make any pre-installation when your Host PC uses Windows OS. It's enough to just plug the A2Bridge to any free USB connector using delivered USB cable. </p>
+<p>But by default, Windows OS cannot transmit more than 2 audio channels to or from the USB audio devices. To use more than 2 audio channels, additional drivers need
+to be installed (Check <a href="https://asio4all.org/about/download-asio4all/">Download – ASIO4ALL Official
+Home</a>). After
+installation of additional drivers, it can be used in programs like Audacity or ocenaudio.</p>
+<div class="admonition info inline end">
+<p class="admonition-title">Attention:</p>
+<p>A2Bridge can be used either with Python and WDM-KS drivers (preferred option) using libraries such as sounddevice, or with ASIO-based applications.</p>
+</div>
+<h2 id="linux-setup">Linux setup</h2>
+<p>Linux can handle multiple audio channels natively without requiring any additional drivers.</p>
+<h2 id="a2bridge-as-a-master">A2Bridge as a master</h2>
+<p>This guide prepares a test configuration that transmits 8 downstream channels and receives 4 upstream channels using 32-bit audio resolution. The slave device must be powered using 12 V phantom power.</p>
+<p>Connect the A2Bridge as shown in the provided example diagram. Phantom power is delivered using a USB charger.
+<img alt="image_alt" src="../assets/MasterExample.svg" style="display:block; margin: 2rem auto; width: 60%;" /> <p style="text-align:center;"><em>Master Configuration example with phantom power delivered by USB charger</em> </p></p>
+<p>Once connected to the PC, the A2Bridge appears as a mass storage device. Open this device and edit the CONFIG.TXT file.
+<img alt="image_alt" src="../assets/setup/massstoragedevice.png" style="display:block; margin: 2rem auto; width: 60%;" /> <p style="text-align:center;"><em>A2Bridge as a mass storage device in Windows</em> </p></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.31&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Default&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;ResetOnNew&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;True&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;A2BRole&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Master&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;AudioResolution&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;UsbInputChannels&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;UsbOutputChannels&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;RunInProtobufMode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;False&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;SupplyVoltage&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;AudioRouteMatrixDownstream&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;AudioRouteMatrixUpstream&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;A2BMasterConfig&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;SlavesOnBus&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;DnSlots&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;UpSlots&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;SlaveConfiguration&quot;</span><span class="p">:[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Node&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;DnSlots&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;LocalDnSlots&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;UpSlots&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;LocalUpSlots&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;PowerConfig&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;High&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;CableLength&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;ConfigureTDM&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;True&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;TdmTxLines&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;TdmRxLines&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;TDMMode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TDM8&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;TDMOptions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;EARLY&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;INV&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ALT&quot;</span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;A2BSlaveConfig&quot;</span><span class="p">:</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;TdmRxChannels&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;TdmTxChannels&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The configuration file needs to be modified according to our needs. The first thing that we need to check is the A2BRole parameter.
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="nt">&quot;A2BRole&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Master&quot;</span><span class="p">,</span>
+</code></pre></div>
+As it is by default set to Master we don't need to change it.</p>
+<p>The next thing we need to check is the audio configuration and number of channels 
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="nt">&quot;AudioResolution&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;UsbInputChannels&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;UsbOutputChannels&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+</code></pre></div>
+It needs to be changed to 
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="nt">&quot;AudioResolution&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;UsbInputChannels&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;UsbOutputChannels&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+</code></pre></div>
+as audio resolution we need is 32 bit and we are going to transmit 8 channels down and receive 4 channels from slave. 
+The <strong>SupplyVoltage</strong> has to be configured to 12000 (value in mV) as we need 12V phantom power.</p>
+<div class="admonition note">
+<p>Please remember that not all of the USB PD chargers support 12V. To verify if your charger does please read the rating plate of your USB charger.
+<img alt="image_alt" src="../assets/setup/charger.png" style="display:block; margin: 2rem auto; width: 60%;" /> <p style="text-align:center; font-size: 15px; font-style: italic;">USB charger supporting 12V</p></p>
+</div>
+<p>The next we are going to prepare audio routing matrices. We are going to transmit each USB channel to corresponding A2B channels so the matrix is going to be simple.
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="nt">&quot;AudioRouteMatrixDownstream&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mi">5</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mi">6</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mi">7</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mi">8</span><span class="p">]</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;AudioRouteMatrixUpstream&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+<span class="w">    </span><span class="p">],</span>
+</code></pre></div>
+<img alt="image_alt" src="../assets/setup/channel_matrix.svg" style="display:block; margin: 2rem auto; width: 20%;" /> <p style="text-align:center; font-size: 15px; font-style: italic;">Routing matrix visualization</p></p>
+<p>Next the A2B bus and slaves need to be configured.</p>
+<div class="highlight"><pre><span></span><code>    &quot;A2BMasterConfig&quot; : {
+      &quot;SlavesOnBus&quot;: 1, &lt;- There is one slave on our bus
+      &quot;DnSlots&quot;: 8,  &lt;- 8 channels downstreamed
+      &quot;UpSlots&quot;: 4, &lt;- 4 channels upstreamed to usb
+      &quot;SlaveConfiguration&quot;:[
+        {
+          &quot;Node&quot;: 0, // &lt;- Node number starting from 0
+          &quot;DnSlots&quot;: 0, // &lt;- Number of channels send down
+          &quot;LocalDnSlots&quot;: 8, // &lt;- Number of channels consumed by node
+          &quot;UpSlots&quot;: 0, &lt;- Number of channels forwarded from down to up
+          &quot;LocalUpSlots&quot;: 4, &lt;- number of channels produced by the node
+          &quot;PowerConfig&quot;: &quot;Low&quot;,
+          &quot;CableLength&quot;: 4,
+          &quot;ConfigureTDM&quot;: &quot;True&quot;,
+          &quot;TdmTxLines&quot;: 1,
+          &quot;TdmRxLines&quot;: 1,
+          &quot;TDMMode&quot;: &quot;TDM8&quot;,
+          &quot;TDMOptions&quot;: [&quot;EARLY&quot;, &quot;INV&quot;, &quot;ALT&quot;]
+        }
+      ]
+    }
+</code></pre></div>
+<p>So in the end we have following configuration</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.31&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Default&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;ResetOnNew&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;True&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;A2BRole&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Master&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;AudioResolution&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;UsbInputChannels&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;UsbOutputChannels&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;RunInProtobufMode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;False&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;SupplyVoltage&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12000</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;AudioRouteMatrixDownstream&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mi">5</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mi">6</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mi">7</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mi">8</span><span class="p">]</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;AudioRouteMatrixUpstream&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;A2BMasterConfig&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;SlavesOnBus&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;DnSlots&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;UpSlots&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;SlaveConfiguration&quot;</span><span class="p">:[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Node&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;DnSlots&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;LocalDnSlots&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;UpSlots&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;LocalUpSlots&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;PowerConfig&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;High&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;CableLength&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;ConfigureTDM&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;True&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;TdmTxLines&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;TdmRxLines&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;TDMMode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TDM8&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;TDMOptions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;EARLY&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;INV&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ALT&quot;</span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;A2BSlaveConfig&quot;</span><span class="p">:</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;TdmRxChannels&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;TdmTxChannels&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>As the new configuration has been saved the A2Bridge should restart and start the new discovery according to our configuration. Please check if LED_1 (see the home page) is green which means that A2Bridge succesfully discovered all configured slave and no errors occured.
+LED_4 Should also be green. If it's yellow then it means that your charger does not support 12V. </p>
+<p><img alt="image_alt" src="../assets/setup/discoversuccess.png" style="display:block; margin: 2rem auto; width: 40%;" /> <p style="text-align:center; font-size: 15px; font-style: italic;">A2Bridge in operable state with external power supply attached</p></p>
+<p>When the device is connected we can check it's status with virtual com port console. Any Serial port terminal will work, in our example we will use PuTTy.</p>
+<p><img alt="image_alt" src="../assets/setup/puttyConfig.png" style="display:block; margin: 2rem auto; width: 40%;" /> <p style="text-align:center; font-size: 15px; font-style: italic;">PuTTy configuration to open A2Bridge console.</p></p>
+<div class="admonition tip">
+<p class="admonition-title">Bandwidth</p>
+<p>Since A2Bridge Serial port is virtual the entered bandwidth does not matter and it can be set to anything.</p>
+</div>
+<p>To read the A2Bridge status we use <strong>status</strong> command. </p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="a2bridge-discovered-all-of-the-nodes-successfully" name="__tabbed_1" type="radio" /><input id="discovery-failed" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="a2bridge-discovered-all-of-the-nodes-successfully">A2Bridge discovered all of the nodes successfully</label><label for="discovery-failed">Discovery failed</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><img alt="image_alt" src="../assets/setup/PuttyStatusSuccess.png" style="display:block; margin: 2rem auto; width: 70%;" /> <p style="text-align:center; font-size: 15px; font-style: italic;">A2Bridge status with all of the nodes discovered.</p></p>
+</div>
+<div class="tabbed-block">
+<p><img alt="image_alt" src="../assets/setup/PuttyStatusFailed.png" style="display:block; margin: 2rem auto; width: 70%;" /> <p style="text-align:center; font-size: 15px; font-style: italic;">A2Bridge status. Undiscovered nodes.</p></p>
+<div class="admonition warning">
+<p class="admonition-title">Troubleshooting</p>
+<p>In case of missing node please check the cable connection.</p>
+</div>
+</div>
+</div>
+</div>
+<p>Now we can transmit the data. In our example we will use python script to transmit the sine wave. I configured the subnode to loopback channels 1 -&gt; 1, 3 -&gt; 2, 5 -&gt; 3, 7 -&gt; 4. </p>
+<h3 id="audio-produced-with-python-script">Audio produced with python script</h3>
+<p>To transmit the data we use sounddevice library (The audio can also be transmitted with ASIO4ALL and programs like Audacity or ocenaudio). The code below generates the sine wave and fullfills the audio buffer in callbacks.</p>
+<p>Please see the <a href="https://github.com/int2code/a2bridge/blob/main/tools/scripts/play_8ch_sin.py">play script</a> to find python code.
+The <a href="https://github.com/int2code/a2bridge/blob/main/tools/scripts/record_4ch.py">record script</a> can be used to record the upstream.</p>
+<p>Once the audio is recorded the plot should show the sine wave like in the image below.</p>
+<p><img alt="image_alt" src="../assets/setup/output_4ch.png" style="display:block; margin: 2rem auto; width: 70%;" /> <p style="text-align:center; font-size: 15px; font-style: italic;">PyPlot output.</p></p>
+<h3 id="audio-produced-with-ocenaudio">Audio produced with ocenaudio</h3>
+<p>The second option to handle multi-channel configuration is to use <a href="https://www.ocenaudio.com/">ocenaudio</a> with <a href="https://asio4all.org/about/download-asio4all/">ASIO4ALL</a> host API.
+Install both of these programs and start the ocenaudio. Configure the output Device by following the image below.
+<img alt="image_alt" src="../assets/setup/ocenaudio_config.png" style="display:block; margin: 2rem auto; width: 70%;" /> <p style="text-align:center; font-size: 15px; font-style: italic;">Ocenaudio config.</p></p>
+<p>Then configure the ASIO4ALL.
+<img alt="image_alt" src="../assets/setup/asio4all_icon.png" style="display:block; margin: 2rem auto; width: 70%;" /> <p style="text-align:center; font-size: 15px; font-style: italic;">ASIO4ALL icon in windows menu.</p></p>
+<p>Please check if all of the other devices are disabled and enable the "XAudio A2B Interface" only
+<img alt="image_alt" src="../assets/setup/asio4all_config.png" style="display:block; margin: 2rem auto; width: 70%;" /> <p style="text-align:center; font-size: 15px; font-style: italic;">Configuration of Asio4ALL.</p></p>
+<p>Then we can go back to ocenaudio and generate the channels content that we want to play. </p>
+<p><img alt="image_alt" src="../assets/setup/ocenaudio_generate1.png" style="display:block; margin: 2rem auto; width: 70%;" /> <p style="text-align:center; font-size: 15px; font-style: italic;">Ocenaudio generate tone menu.</p>
+<img alt="image_alt" src="../assets/setup/ocenaudio_generate2.png" style="display:block; margin: 2rem auto; width: 70%;" /> <p style="text-align:center; font-size: 15px; font-style: italic;">Ocenaudio generate channels content.</p>
+Once you create the audio output you can start playing the audio using A2Bridge. 
+<img alt="image_alt" src="../assets/setup/ocenaudio_play.png" style="display:block; margin: 2rem auto; width: 70%;" /> <p style="text-align:center; font-size: 15px; font-style: italic;">Play generated sine wave.</p></p>
+<p>The <strong>status</strong> command should inform about streaming in USB downstream.</p>
+<p><img alt="image_alt" src="../assets/setup/status_streaming.png" style="display:block; margin: 2rem auto; width: 70%;" /> <p style="text-align:center; font-size: 15px; font-style: italic;">Status USB streaming</p></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.tabs.link", "user_color_mode_toggle"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
