@@ -57,6 +57,10 @@ The `Device state` can have following values:
 - `Error` the device detected either configuration, A2B bus or internal error and must be restarted 
 
 
+The `USB downstream` & `USB upstream` can have values:
+- `Idle` the host is not streaming audio data over the USB 
+- `Streaming` the host is streaming data over the USB 
+
 #### resetjson 
 resets the CONFIG.TXT Json file to default one.
 
