@@ -200,6 +200,12 @@ SECTIONS
     *(.fast_ram)
   } > DTCMRAM
 
+  DATA3(NOLOAD) :
+  {
+    . = ALIGN(4);
+    KEEP(*(.DATA3))
+  } >RAM_D3
+
   /* Remove information from the compiler libraries */
   /DISCARD/ :
   {

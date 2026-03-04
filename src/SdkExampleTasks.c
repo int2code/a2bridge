@@ -23,18 +23,24 @@ S_Sdk_TasksCfg_t Sdk_GetTasksConfiguration(void)
     return (S_Sdk_TasksCfg_t){ SdkTasksCfg, sizeof(SdkTasksCfg) / sizeof(SdkTasksCfg[0]) };
 }
 
-static void Sdk_ToggleLed()
+static void Sdk_PulseLed()
 {
-    static bool ledOn = false;
-    if (!ledOn)
+    static int16_t illumination = 0;
+    static int16_t delta        = 12;
+
+    Sdk_SetLed((S_Sdk_LedRgbColor_t){ illumination, illumination, illumination });
+
+    illumination += delta;
+    if (illumination > 0xFF)
     {
-        Sdk_SetLed((S_Sdk_LedRgbColor_t){ 0, 0, 120 });
+        illumination = 0xFF;
+        delta        = -delta;
     }
-    else
+    if (illumination < 0)
     {
-        Sdk_SetLed((S_Sdk_LedRgbColor_t){ 0, 0, 0 });
+        illumination = 0;
+        delta        = -delta;
     }
-    ledOn = !ledOn;
 }
 
 static void Sdk_Task1(void* pvParameters)
@@ -44,8 +50,8 @@ static void Sdk_Task1(void* pvParameters)
     LOG_DEBUG("SDK TASK1 ready to run ");
     while (true)
     {
-        Sdk_TaskSleep(950);
-        Sdk_ToggleLed();
+        Sdk_TaskSleep(50);
+        Sdk_PulseLed();
         Sdk_TaskAlive();
     }
 }
