@@ -23,6 +23,15 @@ S_Sdk_TasksCfg_t Sdk_GetTasksConfiguration(void)
     return (S_Sdk_TasksCfg_t){ SdkTasksCfg, sizeof(SdkTasksCfg) / sizeof(SdkTasksCfg[0]) };
 }
 
+void Sdk_A2BDiscoveryCommandCallback(const bool result)
+{
+    // this function is called by the core library when user triggers discovery of th A2B bus
+    // Put here your code to trigger your user specific code.
+    // The result paramater gives the information if the discovery process has been triggered successfully or not
+    // ATTENTION: this function shall return as soon as possible and DO NOT block the context
+    // Suggested code to be used:
+}
+
 static void Sdk_PulseLed()
 {
     static int16_t illumination = 0;
