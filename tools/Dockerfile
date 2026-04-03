@@ -14,7 +14,11 @@ RUN apt-get -y update && \
     python3-pip \
     curl \
     clang-format \
-    gh 
+    gh \
+    ruby \
+    gcc-multilib
+
+RUN gem install ceedling
 
 
 RUN apt-get -y install git
