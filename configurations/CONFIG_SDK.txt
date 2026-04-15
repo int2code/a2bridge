@@ -1,0 +1,48 @@
+{
+    "Version": "1.32",
+    "Name": "Default",
+    "ResetOnNew": "True",
+    "LogLevel": "info",
+    "A2BRole": "Master",
+    "AudioResolution": 16,
+    "UsbInputChannels": 2,
+    "UsbOutputChannels": 2,
+    "RunInProtobufMode": "False",
+    "SupplyVoltage": 5000,
+    "AudioRouteMatrixDownstream": [
+      [1],
+      [2]
+    ],
+    "AudioRouteMatrixUpstream": [
+      [1],
+      [2]
+    ],
+    "A2BMasterConfig" : {
+      "SlavesOnBus": 1,
+      "DnSlots": 8,
+      "UpSlots": 8,
+      "AutoDiscovery": "True",
+      "SlaveConfiguration":[
+        {
+          "Node": 0,
+          "DnSlots": 0,
+          "LocalDnSlots": 8,
+          "UpSlots": 0,
+          "LocalUpSlots": 8,
+          "PowerConfig": "High",
+          "CableLength": 4,
+          "ConfigureTDM": "True",
+          "TdmTxLines": 1,
+          "TdmRxLines": 1,
+          "TDMMode": "TDM8",
+          "TDMOptions": ["EARLY", "INV", "ALT"]
+        }
+      ]
+    },
+    "SdkConfig": [
+    {
+      "Name": "TestName",
+      "Address": 20
+    }
+  ]
+}
