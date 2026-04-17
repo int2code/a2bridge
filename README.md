@@ -10,6 +10,7 @@
   - [Flash the A2Bridge](#flash-the-a2bridge)
     - [Using DFU](#using-dfu)
   - [Write your own code](#flash-the-a2bridge)
+  - [A2Bridge Configuration Validator](#a2bridge-configuration-validator)
 <!-- /TOC -->
 
 # A2Bridge
@@ -143,3 +144,33 @@ Basic information:
 - you can add up to 5 custom tasks for your application 
 - the A2Bridge is using the FreeRTOS, currently the full API of it is public in the core library and can be used (carefully ;-) ) 
 - the SDK is still under development and the API function set is open, if you need anything which is not available yet, please contact us directly at info@int2code.com 
+
+
+## A2Bridge Configuration Validator
+
+The repository includes Python script for validating A2Bridge device configuration file.
+It checks configs for both **Master** and **Slave** device roles across three layers:
+
+1. **JSON standard compliance** – file exists, is valid UTF-8, and parses as JSON with a top-level object.
+2. **Schema validation** – all required fields are present with correct types and allowed values.
+3. **Cross-field consistency** – routing matrix row counts, slave counts, TDM channel limits, etc.
+
+The tool is located at [`tools/json_config_validator/config_validator.py`](tools/json_config_validator/config_validator.py).
+Full documentation is available in [`docs/userguide/config_validator.md`](docs/userguide/config_validator.md).
+
+**Quick start:**
+
+```bash
+# Install dependency
+pip install "jsonschema>=4.0"
+
+# Auto-detect device role from the file
+python tools/json_config_validator/config_validator.py config.json
+
+# Force a specific schema
+python tools/json_config_validator/config_validator.py master.json --mode master
+python tools/json_config_validator/config_validator.py slave.json  --mode slave
+```
+
+Exit codes: `0` = valid, `1` = validation failed, `2` = bad arguments.
+
