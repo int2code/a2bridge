@@ -1,0 +1,933 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>A2Bridge JSON Configuration Validator - A2Bridge User Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../layout.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#a2bridge-json-configuration-validator" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="A2Bridge User Guide" class="md-header__button md-logo" aria-label="A2Bridge User Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            A2Bridge User Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              A2Bridge JSON Configuration Validator
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="A2Bridge User Guide" class="md-nav__button md-logo" aria-label="A2Bridge User Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    A2Bridge User Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../json/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JSON configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../serial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Serial COM port communication
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dfu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firmware Update
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#availability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Availability
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exit-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exit Codes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-validated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is validated
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What is validated">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-json-standard-compliance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. JSON Standard Compliance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-schema-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Schema Validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-cross-field-consistency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Cross-Field Consistency
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output Examples
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="a2bridge-json-configuration-validator">A2Bridge JSON Configuration Validator</h1>
+<p>A standalone Python script that validates A2Bridge device configuration files
+against the official schema for both <strong>Master</strong> and <strong>Slave</strong> device roles.</p>
+<hr />
+<h2 id="requirements">Requirements</h2>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python</td>
+<td>3.9 or newer</td>
+</tr>
+<tr>
+<td>Third-party library</td>
+<td><code>jsonschema &gt;= 4.0</code></td>
+</tr>
+</tbody>
+</table>
+<p>Install the dependency before first use:</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;jsonschema&gt;=4.0&quot;</span>
+</code></pre></div>
+<p>No other packages, no project installation needed — the script runs as a
+single downloaded file.</p>
+<hr />
+<h2 id="availability">Availability</h2>
+<p>The script is part of the <a href="https://github.com/int2code/a2bridge">A2Bridge SDK repository</a> at path:</p>
+<div class="highlight"><pre><span></span><code>tools/json_config_validator/config_validator.py
+</code></pre></div>
+<p>No project installation is needed — download or clone the repo and run the script directly.</p>
+<hr />
+<h2 id="usage">Usage</h2>
+<div class="highlight"><pre><span></span><code>python config_validator.py JSON_FILE [--mode {master,slave,auto}]
+</code></pre></div>
+<h3 id="arguments">Arguments</h3>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>JSON_FILE</code></td>
+<td>Yes</td>
+<td>Path to the A2Bridge <code>.json</code> configuration file to validate.</td>
+</tr>
+<tr>
+<td><code>--mode</code>, <code>-m</code></td>
+<td>No</td>
+<td>Schema to validate against: <code>master</code>, <code>slave</code>, or <code>auto</code> (default). When <code>auto</code> the role is read from the <code>A2BRole</code> field inside the file. When <code>master</code> or <code>slave</code> is given the script also asserts that <code>A2BRole</code> matches.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="examples">Examples</h3>
+<p>Auto-detect device role from the file:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>config_validator.py<span class="w"> </span>config.json
+</code></pre></div>
+<p>Force a specific schema:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>config_validator.py<span class="w"> </span>master.json<span class="w"> </span>--mode<span class="w"> </span>master
+python<span class="w"> </span>config_validator.py<span class="w"> </span>slave.json<span class="w">  </span>--mode<span class="w"> </span>slave
+</code></pre></div>
+<p>Show built-in help:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>config_validator.py<span class="w"> </span>--help
+</code></pre></div>
+<hr />
+<h2 id="exit-codes">Exit Codes</h2>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>Config is valid</td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td>Validation failed — errors are printed to <strong>stderr</strong></td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td>Bad command-line arguments</td>
+</tr>
+<tr>
+<td>---</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="what-is-validated">What is validated</h2>
+<p>Validation runs in three sequential layers. A later layer is skipped if an
+earlier one fails.</p>
+<h3 id="1-json-standard-compliance">1. JSON Standard Compliance</h3>
+<ul>
+<li>The file exists and is readable.</li>
+<li>The file is encoded in UTF-8.</li>
+<li>The content is syntactically valid JSON.</li>
+<li>The top-level value is a JSON object (<code>{...}</code>).</li>
+</ul>
+<p>When a syntax error is found the output includes the offending line and a
+caret pointing at the column:</p>
+<div class="highlight"><pre><span></span><code>[FAIL] Config is invalid (? mode):
+  - Invalid JSON syntax at line 14, col 5: Expecting &#39;,&#39; delimiter
+      &quot;SupplyVoltage&quot;: 5000
+      ^
+</code></pre></div>
+<h3 id="2-schema-validation">2. Schema Validation</h3>
+<p>Checks that every required field is present and holds a valid value.</p>
+<p><strong>Fields required in every config (Master and Slave)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Version</code></td>
+<td><code>string</code></td>
+<td>Pattern <code>\d+\.\d+</code> — e.g. <code>"1.32"</code></td>
+</tr>
+<tr>
+<td><code>Name</code></td>
+<td><code>string</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ResetOnNew</code></td>
+<td><code>"True"</code> | <code>"False"</code></td>
+<td>String, not boolean</td>
+</tr>
+<tr>
+<td><code>LogLevel</code></td>
+<td><code>string</code></td>
+<td><code>debug</code> <code>info</code> <code>warning</code> <code>error</code> <code>critical</code></td>
+</tr>
+<tr>
+<td><code>A2BRole</code></td>
+<td><code>"Master"</code> | <code>"Slave"</code></td>
+<td>Drives schema selection</td>
+</tr>
+<tr>
+<td><code>AudioResolution</code></td>
+<td><code>integer</code></td>
+<td><code>16</code>, <code>24</code>, or <code>32</code></td>
+</tr>
+<tr>
+<td><code>UsbInputChannels</code></td>
+<td><code>integer</code></td>
+<td>≥ 1</td>
+</tr>
+<tr>
+<td><code>UsbOutputChannels</code></td>
+<td><code>integer</code></td>
+<td>≥ 1</td>
+</tr>
+<tr>
+<td><code>RunInProtobufMode</code></td>
+<td><code>"True"</code> | <code>"False"</code></td>
+<td>String, not boolean</td>
+</tr>
+<tr>
+<td><code>SupplyVoltage</code></td>
+<td><code>integer</code></td>
+<td>≥ 0, in mV</td>
+</tr>
+<tr>
+<td><code>AudioRouteMatrixDownstream</code></td>
+<td><code>array of arrays</code></td>
+<td>Each inner value ≥ 1</td>
+</tr>
+<tr>
+<td><code>AudioRouteMatrixUpstream</code></td>
+<td><code>array of arrays</code></td>
+<td>Each inner value ≥ 1</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Additional field required when <code>A2BRole</code> is <code>"Master"</code></strong></p>
+<p><code>A2BMasterConfig</code> — object with:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SlavesOnBus</code></td>
+<td><code>integer</code></td>
+<td>≥ 1</td>
+</tr>
+<tr>
+<td><code>DnSlots</code></td>
+<td><code>integer</code></td>
+<td>≥ 0</td>
+</tr>
+<tr>
+<td><code>UpSlots</code></td>
+<td><code>integer</code></td>
+<td>≥ 0</td>
+</tr>
+<tr>
+<td><code>AutoDiscovery</code></td>
+<td><code>"True"</code> | <code>"False"</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>SlaveConfiguration</code></td>
+<td><code>array</code></td>
+<td>At least 1 entry; see below</td>
+</tr>
+</tbody>
+</table>
+<p>Each entry in <code>SlaveConfiguration</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Allowed values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Node</code></td>
+<td><code>integer</code></td>
+<td>≥ 0</td>
+</tr>
+<tr>
+<td><code>DnSlots</code></td>
+<td><code>integer</code></td>
+<td>≥ 0</td>
+</tr>
+<tr>
+<td><code>LocalDnSlots</code></td>
+<td><code>integer</code></td>
+<td>≥ 0</td>
+</tr>
+<tr>
+<td><code>UpSlots</code></td>
+<td><code>integer</code></td>
+<td>≥ 0</td>
+</tr>
+<tr>
+<td><code>LocalUpSlots</code></td>
+<td><code>integer</code></td>
+<td>≥ 0</td>
+</tr>
+<tr>
+<td><code>PowerConfig</code></td>
+<td><code>string</code></td>
+<td><code>"High"</code> or <code>"Low"</code></td>
+</tr>
+<tr>
+<td><code>CableLength</code></td>
+<td><code>integer</code></td>
+<td>≥ 0 (metres)</td>
+</tr>
+<tr>
+<td><code>ConfigureTDM</code></td>
+<td><code>"True"</code> | <code>"False"</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>TdmTxLines</code></td>
+<td><code>integer</code></td>
+<td>≥ 0</td>
+</tr>
+<tr>
+<td><code>TdmRxLines</code></td>
+<td><code>integer</code></td>
+<td>≥ 0</td>
+</tr>
+<tr>
+<td><code>TDMMode</code></td>
+<td><code>string</code></td>
+<td><code>TDM2</code> <code>TDM4</code> <code>TDM8</code> <code>TDM12</code> <code>TDM16</code> <code>TDM20</code> <code>TDM24</code> <code>TDM32</code></td>
+</tr>
+<tr>
+<td><code>TDMOptions</code></td>
+<td><code>array of strings</code></td>
+<td>Any subset of <code>EARLY</code> <code>ALT</code> <code>INV</code> <code>RXBCLKINV</code> <code>TXBCLKINV</code> <code>TDMSS</code> <code>INTERLEAVE</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Additional field required when <code>A2BRole</code> is <code>"Slave"</code></strong></p>
+<p><code>A2BSlaveConfig</code> — object with:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TdmRxChannels</code></td>
+<td><code>integer</code></td>
+<td>≥ 0</td>
+</tr>
+<tr>
+<td><code>TdmTxChannels</code></td>
+<td><code>integer</code></td>
+<td>≥ 0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-cross-field-consistency">3. Cross-Field Consistency</h3>
+<p>Checks relationships between fields that JSON Schema cannot express:</p>
+<ul>
+<li><code>AudioRouteMatrixDownstream</code> rows count must not be higher than <code>UsbInputChannels</code>.</li>
+<li><code>AudioRouteMatrixUpstream</code> rows count must not be higher than <code>UsbOutputChannels</code>.</li>
+<li><em>(Master only)</em> <code>A2BMasterConfig.SlavesOnBus</code> must equal the number of
+  entries in <code>A2BMasterConfig.SlaveConfiguration</code>.</li>
+<li><em>(Slave only)</em> <code>AudioRouteMatrixUpstream</code> row count must not exceed
+  <code>A2BSlaveConfig.TdmRxChannels</code> — each row is one A2B channel the slave
+  receives, so all rows must fit within the declared receive capacity.</li>
+<li><em>(Slave only)</em> The highest A2B channel index referenced in any cell of
+  <code>AudioRouteMatrixDownstream</code> must not exceed <code>A2BSlaveConfig.TdmTxChannels</code>
+  — the slave can only transmit as many A2B channels as <code>TdmTxChannels</code>
+  allows.</li>
+</ul>
+<hr />
+<h2 id="output-examples">Output Examples</h2>
+<p><strong>Valid config</strong></p>
+<div class="highlight"><pre><span></span><code>[OK] Config is valid (master mode)
+</code></pre></div>
+<p><strong>Invalid config</strong></p>
+<div class="highlight"><pre><span></span><code>[FAIL] Config is invalid (master mode):
+  - at &#39;AudioResolution&#39;: 20 is not one of [16, 24, 32]
+  - at &#39;A2BMasterConfig -&gt; SlaveConfiguration -&gt; 0 -&gt; PowerConfig&#39;: &#39;Medium&#39; is not one of [&#39;High&#39;, &#39;Low&#39;]
+</code></pre></div>
+<p><strong>Mode mismatch</strong></p>
+<div class="highlight"><pre><span></span><code>[FAIL] Config is invalid (slave mode):
+  - &#39;A2BRole&#39; in file is &#39;Master&#39; but validation mode is &#39;slave&#39; – mismatch.
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.tabs.link", "user_color_mode_toggle"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
