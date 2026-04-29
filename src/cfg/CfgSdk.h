@@ -2,7 +2,7 @@
  *
  * @file CfgSdk.h
  *
- * @brief Library handling SDK configuration
+ * @brief Example module for handling custom configuration
  *
  */
 

@@ -23,7 +23,22 @@ static S_Sdk_Config_t Sdk_Config;
 bool ParseJson(lwjson_t* pInst);
 
 /**
- * @brief SDK JSON parser implementation for SDK.
+ * @brief SDK JSON parser hook used by the Config module.
+ *
+ * @details
+ * This global function pointer is used as an extension mechanism to plug in
+ * a custom SDK-specific JSON parsing routine.
+ *
+ * The core Config module calls this function (if defined) to allow the
+ * application or feature-specific module to parse its own configuration
+ * section.
+ *
+ * By assigning this symbol to a concrete implementation (e.g. ParseJson),
+ * the module registers its parser without requiring direct dependencies
+ * or explicit function calls.
+ *
+ * This is the expected mechanism for integrating custom configuration
+ * parsing logic into the generic Config framework.
  */
 ParseSdkJson parseSdkJson = ParseJson;
 
@@ -56,16 +71,17 @@ bool ParseConfigJson(lwjson_t* pInst, S_Sdk_Config_t* config)
     const lwjson_token_t* pManagersToken = lwjson_find(pInst, configSdkKeyword);
     if (pManagersToken == NULL)
     {
+        // Returning true here means the SdkConfig is optional and can be skipped. If you want force the SdkConfig being
+        // present, return false here.
         return true;
     }
-    const lwjson_token_t* pToken = NULL;
 
-    pToken = lwjson_find_ex(pInst, pManagersToken, "Name");
+    const lwjson_token_t* pToken = lwjson_find_ex(pInst, pManagersToken, "Name");
     if ((pToken != NULL) && (LWJSON_TYPE_STRING == pToken->type))
     {
-        const uint32_t nameLen = pToken->u.str.token_value_len < sizeof(config->Name) - 1U
-                                     ? pToken->u.str.token_value_len
-                                     : sizeof(config->Name) - 1U;
+        const uint32_t nameLen = (pToken->u.str.token_value_len < sizeof(config->Name) - 1U)
+                                     ? (pToken->u.str.token_value_len)
+                                     : (sizeof(config->Name) - 1U);
         memcpy(config->Name, pToken->u.str.token_value, nameLen);
         config->Name[nameLen] = '\0';
     }
