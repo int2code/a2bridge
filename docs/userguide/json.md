@@ -1,7 +1,7 @@
 # JSON configuration
 
 The mass storage class USB endpoint is used to pass the needed A2B configuration as a JSON file. 
-To access it, opens the CONFIG.TXT file. **Please be aware that JSON configuration is case sensitive.** By default, it contains the following configuration:
+To access it, opens the CONFIG.A2B file. **Please be aware that JSON configuration is case sensitive.** By default, it contains the following configuration:
 
 ```json
 {

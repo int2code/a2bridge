@@ -24,7 +24,7 @@ This guide prepares a test configuration that transmits 8 downstream channels an
 Connect the A2Bridge as shown in the provided example diagram. Phantom power is delivered using a USB charger.
 ![image_alt](./assets/MasterExample.svg){: style="display:block; margin: 2rem auto; width: 60%;"} <p style="text-align:center;">*Master Configuration example with phantom power delivered by USB charger* </p>
 
-Once connected to the PC, the A2Bridge appears as a mass storage device. Open this device and edit the CONFIG.TXT file.
+Once connected to the PC, the A2Bridge appears as a mass storage device. Open this device and edit the CONFIG.A2B file.
 ![image_alt](./assets/setup/massstoragedevice.png){: style="display:block; margin: 2rem auto; width: 60%;"} <p style="text-align:center;">*A2Bridge as a mass storage device in Windows* </p>
 
 ``` json

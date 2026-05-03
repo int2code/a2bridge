@@ -62,7 +62,7 @@ The `USB downstream` & `USB upstream` can have values:
 - `Streaming` the host is streaming data over the USB 
 
 #### resetjson 
-resets the CONFIG.TXT Json file to default one.
+resets the CONFIG.A2B Json file to default one.
 
 #### discover
 Triggers the A2B bus discovery process
@@ -101,7 +101,7 @@ Prints the information about the device
 Prints the status of the device.
 
 #### resetjson
-Resets the CONFIG.TXT Json file to default one.
+Resets the CONFIG.A2B Json file to default one.
 
 #### switchproto
 Switches COM port to protobuf mode

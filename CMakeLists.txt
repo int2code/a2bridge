@@ -68,6 +68,7 @@ target_sources(${TARGET_CM7} PUBLIC
     src/startup/startup_stm32h745xihx.s
     src/SdkInit.c
     src/SdkExampleTasks.c
+    src/cfg/CfgSdk.c
 )
 
 

@@ -25,6 +25,7 @@ S_Sdk_TasksCfg_t Sdk_GetTasksConfiguration(void)
 
 void Sdk_A2BDiscoveryCommandCallback(const bool result)
 {
+    (void)result;
     // this function is called by the core library when user triggers discovery of th A2B bus
     // Put here your code to trigger your user specific code.
     // The result paramater gives the information if the discovery process has been triggered successfully or not
