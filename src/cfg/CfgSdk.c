@@ -20,7 +20,7 @@ static S_Sdk_Config_t Sdk_Config;
  *
  * @return true if the section was parsed successfully, false otherwise.
  */
-bool ParseJson(lwjson_t* pInst);
+bool ParseJson(lwjson_t* pInst, S_Config_DeviceConfig_t* pConfig_DeviceConfig);
 
 /**
  * @brief SDK JSON parser hook used by the Config module.
@@ -61,8 +61,9 @@ const char* configSdkKeyword = "SdkConfig";
  */
 bool ParseConfigJson(lwjson_t* pInst, S_Sdk_Config_t* config);
 
-bool ParseJson(lwjson_t* pInst)
+bool ParseJson(lwjson_t* pInst, S_Config_DeviceConfig_t* pConfig_DeviceConfig)
 {
+    (void)pConfig_DeviceConfig;
     return ParseConfigJson(pInst, &Sdk_Config);
 }
 
