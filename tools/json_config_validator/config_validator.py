@@ -140,6 +140,30 @@ _SLAVE_CONFIGURATION_ITEM: dict = {
             "minimum": 0,
             "description": "Number of slots produced by this node towards master.",
         },
+        "UpstreamReceiveSlots": {
+            "type": "array",
+            "uniqueItems": True,
+            "items": {"type": "integer", "minimum": 0, "maximum": 31},
+            "description": "Optional 0-based upstream slots received locally by this node.",
+        },
+        "DownstreamReceiveSlots": {
+            "type": "array",
+            "uniqueItems": True,
+            "items": {"type": "integer", "minimum": 0, "maximum": 31},
+            "description": "Optional 0-based downstream slots received locally by this node through DNMASK.",
+        },
+        "UpstreamOffset": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 31,
+            "description": "Optional local upstream channel offset.",
+        },
+        "DownstreamOffset": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 31,
+            "description": "Optional local downstream channel offset.",
+        },
         "PowerConfig": {
             "type": "string",
             "enum": ["High", "Low"],

@@ -148,6 +148,78 @@ Number of slots forwarded upward.
 #### LocalUpSlots
 Number of slots produced by current node. The number of slots send up to the upper node (to master direction) is equal to UpSlots + LocalUpSlots
 
+#### UpstreamReceiveSlots
+Optional array of 0-based upstream slot indexes received locally by this node from its B-port and transmitted on the local I2S/TDM DTX pins. An empty or missing array disables local upstream slot receive. For example, `[0, 1]` programs `A2B_UPMASK0 = 0x03`.
+
+#### DownstreamReceiveSlots
+Optional array of 0-based downstream slot indexes received locally by this node from its A-port and transmitted on the local I2S/TDM DTX pins. An empty or missing array disables downstream mask mode. A non-empty array programs `A2B_DNMASK0` through `A2B_DNMASK3` and enables `A2B_LDNSLOTS.DNMASKEN`.
+
+#### UpstreamOffset
+Optional local upstream channel offset. It programs `A2B_UPOFFSET` and is used when this node contributes `LocalUpSlots` from its local I2S/TDM/PDM RX frame buffer.
+
+#### DownstreamOffset
+Optional local downstream channel offset. It programs `A2B_DNOFFSET` and is used when this node contributes local downstream slots in downstream mask mode.
+
+Example: a middle node that forwards existing traffic, receives selected slots locally, and contributes its own slots:
+
+```json
+{
+  "Node": 1,
+  "DnSlots": 4,
+  "LocalDnSlots": 2,
+  "UpSlots": 2,
+  "LocalUpSlots": 2,
+  "UpstreamReceiveSlots": [0, 1],
+  "DownstreamReceiveSlots": [0, 3],
+  "UpstreamOffset": 4,
+  "DownstreamOffset": 2,
+  "PowerConfig": "High",
+  "CableLength": 4,
+  "ConfigureTDM": "True",
+  "TdmTxLines": 1,
+  "TdmRxLines": 1,
+  "TDMMode": "TDM8",
+  "TDMOptions": ["EARLY", "INV", "ALT"]
+}
+```
+
+In this example the upstream direction works as follows:
+
+- `UpSlots: 2` forwards upstream slots 0 and 1 from the B-port toward the master on the A-port.
+- `UpstreamReceiveSlots: [0, 1]` also copies those forwarded upstream slots into the local TX frame buffer, so they can be transmitted on the node local DTX/I2S/TDM pins.
+- `LocalUpSlots: 2` appends two locally produced upstream slots after the forwarded slots.
+- `UpstreamOffset: 4` means the local contribution starts from local RX frame buffer channel 4. The node therefore contributes local channels 4 and 5 as upstream slots 2 and 3.
+
+The upstream bus after this node is:
+
+```text
+upstream slot 0 = forwarded slot 0 from the next node
+upstream slot 1 = forwarded slot 1 from the next node
+upstream slot 2 = local RX frame buffer channel 4
+upstream slot 3 = local RX frame buffer channel 5
+```
+
+The downstream direction uses the mask mode:
+
+- `DnSlots: 4` forwards downstream slots 0 through 3 from the A-port to the B-port.
+- `DownstreamReceiveSlots: [0, 3]` locally receives only downstream slots 0 and 3 and outputs them on the local DTX/I2S/TDM pins.
+- Because `DownstreamReceiveSlots` is not empty, the driver enables `LDNSLOTS.DNMASKEN`. In this mode, `LocalDnSlots` no longer means "consume this many downstream slots"; it means "contribute this many local downstream slots".
+- `LocalDnSlots: 2` appends two locally produced downstream slots after the forwarded downstream slots.
+- `DownstreamOffset: 2` means the local downstream contribution starts from local RX frame buffer channel 2. The node therefore contributes local channels 2 and 3 as downstream slots 4 and 5.
+
+The downstream bus after this node is:
+
+```text
+downstream slot 0 = forwarded slot 0 from the master
+downstream slot 1 = forwarded slot 1 from the master
+downstream slot 2 = forwarded slot 2 from the master
+downstream slot 3 = forwarded slot 3 from the master
+downstream slot 4 = local RX frame buffer channel 2
+downstream slot 5 = local RX frame buffer channel 3
+```
+
+If `DownstreamReceiveSlots` is empty or missing, `LDNSLOTS.DNMASKEN` is not enabled and `LocalDnSlots` keeps the simple legacy meaning: the number of downstream slots consumed locally by the node.
+
 #### PowerConfig 
 Power configuration. Can be set to one of those values: **High** or **Low**
 
