@@ -144,6 +144,10 @@ Each entry in `SlaveConfiguration`:
 | `LocalDnSlots` | `integer` | ≥ 0 |
 | `UpSlots` | `integer` | ≥ 0 |
 | `LocalUpSlots` | `integer` | ≥ 0 |
+| `UpstreamReceiveSlots` | `array of integer` | Optional, unique 0-based slot indexes `0..31` |
+| `DownstreamReceiveSlots` | `array of integer` | Optional, unique 0-based slot indexes `0..31` |
+| `UpstreamOffset` | `integer` | Optional, `0..31` |
+| `DownstreamOffset` | `integer` | Optional, `0..31` |
 | `PowerConfig` | `string` | `"High"` or `"Low"` |
 | `CableLength` | `integer` | ≥ 0 (metres) |
 | `ConfigureTDM` | `"True"` \| `"False"` | |
