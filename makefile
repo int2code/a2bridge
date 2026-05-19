@@ -39,10 +39,10 @@ RelWithDebInfo:
 
 
 flash-dfu-debug:
-	$(DFU_UTIL) --download ./artifacts/a2bridge_debug_cm7.bin.dfu --reset
+	$(DFU_UTIL) --download ./artifacts/a2bridge_debug_cm7.bin.dfu
 
 flash-dfu-release:
-	$(DFU_UTIL) --download ./artifacts/a2bridge_release_cm7.bin.dfu --reset
+	$(DFU_UTIL) --download ./artifacts/a2bridge_release_cm7.bin.dfu
 
 generate-proto:
 	@chmod +x $(DOCKER)
