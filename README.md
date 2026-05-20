@@ -130,7 +130,7 @@ You can find the build results in artifacts directory.
 You can flash the A2Bridge with the new build SW using following command
 
 ```bash 
-dfu-util --download artifacts/a2bridge_release_cm7.bin.dfu --reset
+dfu-util --download artifacts/a2bridge_release_cm7.bin.dfu
 ```
 
 For more information please refer to [UserGuide/Firmware Update](https://int2code.github.io/a2bridge/dfu/)

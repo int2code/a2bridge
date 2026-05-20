@@ -25,7 +25,7 @@ Linux supports DFU out of the box, no driver replacement is needed.
 For DFU flashing use **dfu-util** tool. Example command:
 
 ```
-dfu-util.exe --download .\UA2B\_cm7.bin.dfu --reset
+dfu-util.exe --download .\UA2B\_cm7.bin.dfu
 ```
 
 *NOTE: File with \*.dfu extension is a special file prepared during
