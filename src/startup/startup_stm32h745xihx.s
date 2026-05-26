@@ -60,6 +60,15 @@ defined in linker script */
 Reset_Handler:
   ldr   sp, =_estack      /* set stack pointer */
 
+/* Best-effort mitigation for field units with BCM4 left enabled:
+   clear the CM4 boot-enable bit before SystemInit() can race with CM4 startup.
+   SYSCFG->UR1 is at 0x58000400 + 0x304 = 0x58000704, BCM4 is bit 0. */
+   
+  ldr   r0, =0x58000704
+  ldr   r1, [r0]
+  bic   r1, r1, #1
+  str   r1, [r0]
+  
 /* Call the clock system initialization function.*/
   bl  SystemInit
 
@@ -761,5 +770,4 @@ g_pfnVectors:
 
    .weak      WAKEUP_PIN_IRQHandler
    .thumb_set WAKEUP_PIN_IRQHandler,Default_Handler
-
 

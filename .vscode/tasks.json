@@ -21,11 +21,31 @@
             "hide": true
         },
         {
+            "type": "shell",
+            "label": "Program Option Bytes",
+            "command": "${STM32_PRG_PATH}/STM32_Programmer_CLI",
+            "args": [
+                "--connect",
+                "port=swd",
+                "--optionbytes",
+                "BCM4=0",
+                "BCM7=1",
+                "-hardRst",
+                "-rst"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "hide": true
+        },
+        {
             "label": "Build+Flash Debug",
             "dependsOrder": "sequence",
             "dependsOn": [
                 "docker-build-debug",
-                "Flash Debug"
+                "Flash Debug",
+                "Program Option Bytes"
             ],
         },
         {
@@ -53,7 +73,8 @@
             "dependsOrder": "sequence",
             "dependsOn": [
                 "local-build-debug",
-                "Flash Debug"
+                "Flash Debug",
+                "Program Option Bytes"
             ],
         },
         {
@@ -100,7 +121,8 @@
             "dependsOrder": "sequence",
             "dependsOn": [
                 "docker-build-release",
-                "Flash Release"
+                "Flash Release",
+                "Program Option Bytes"
             ],
         },
         {
@@ -128,7 +150,8 @@
             "dependsOrder": "sequence",
             "dependsOn": [
                 "local-build-release",
-                "Flash Release"
+                "Flash Release",
+                "Program Option Bytes"
             ],
         },
         {
