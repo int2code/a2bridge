@@ -73,7 +73,7 @@ static void Sdk_Task2(void* pvParameters)
     while (true)
     {
         Sdk_TaskSleep(950);
-        LOG_DEBUG("%s task running", pcTaskGetName(NULL));
+        // LOG_DEBUG("%s task running", pcTaskGetName(NULL));
         Sdk_TaskAlive();
     }
 }
