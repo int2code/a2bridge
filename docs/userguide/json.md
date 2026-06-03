@@ -8,25 +8,29 @@ To access it, opens the CONFIG.A2B file. **Please be aware that JSON configurati
     "Version": "x.xx",
     "Name": "Default",
     "ResetOnNew": "True",
+    "LogLevel": "info",
     "A2BRole": "Master",
     "AudioResolution": 16,
     "UsbInputChannels": 2,
     "UsbOutputChannels": 2,
-    "RunInProtobufMode": "True",
+    "RunInProtobufMode": "False",
     "SupplyVoltage": 5000,
     "AudioRouteMatrixDownstream": [
       [1],
-      [2],
+      [2]
     ],
     "AudioRouteMatrixUpstream": [
       [1],
-      [2],
+      [2]
     ],
     "A2BMasterConfig" : {
       "SlavesOnBus": 1,
       "DnSlots": 8,
       "UpSlots": 8,
-      "AutoDiscovery": "False",
+      "AutoDiscovery": "True",
+      "PartialDiscovery": "True",
+      "MaxDiscoveryRetries": 6,
+      "DiscoveryRetryTimeout": 100,
       "SlaveConfiguration":[
         {
           "Node": 0,
@@ -65,6 +69,10 @@ The name of the configuration. Users can change it to save the configuration tit
 This option is used to configure the behavior on new
 configuration save. If it is set to True the device will be reset on new
 configuration uploaded.  
+
+## LogLevel
+Log message severity level. It can be set to one of these values:
+**error, warning, info, debug.**
   
 ## A2BRole 
 Option to configure the A2B role. It can be set to one of
@@ -129,6 +137,15 @@ Number of the up slots coming to the device.
 
 ### AutoDiscovery
 Setting this flag to true will cause the A2B discovery to be triggered every 500ms as long as the A2Bridge doesn't reach the Normal state (A2B discovery successful)
+
+### PartialDiscovery 
+Setting this flag to True allows the device to keep a partially discovered bus running when at least one slave was discovered before a later node failed. If this option is missing, the firmware default is used.
+
+### MaxDiscoveryRetries 
+Maximum number of discovery retries after a missing SRF event. The value is optional and must be an integer from 0 to 255. Setting the value to 0 will case no discovery retries will be done.
+
+### DiscoveryRetryTimeout 
+Timeout in milliseconds between discovery retry attempts. The value is optional and must be a non-negative integer.
   
 ### SlaveConfiguration 
 Contains the table of the slave configurations. Each slave configuration should contain following properties:
@@ -195,6 +212,59 @@ when this flag is set the slaves TDM slot length is 16 bits; 32 bits otherwise
 When this option is set, the channels are interleaved between TDM lines.
 
 ![image_alt](assets/image5.png)
+
+#### ConfigurePDM
+If this option is set to True, the slave PDM configuration will be set by A2Bridge. When it is False or missing, PDM is not configured for this slave.
+
+When PDM is enabled, the slave configuration must include `PdmChannels` and can include the following optional fields:
+
+```json
+"ConfigurePDM": "True",
+"PdmEnableHighPassFilter": "True",
+"PdmRate": "SFF",
+"PdmChannels": ["Mono", "Stereo"],
+"PdmAltClock": "False"
+```
+
+#### PdmEnableHighPassFilter
+Enables the PDM high-pass filter when set to True. If the option is missing, the filter is disabled.
+
+#### PdmRate
+PDM demodulator output rate. It can be set to one of these values:
+**SFF, SFF2, SFF4.** If the option is missing, **SFF** is used.
+
+#### PdmChannels
+PDM channel configuration for the two PDM inputs of the A2B transceiver. This option is required when `ConfigurePDM` is set to True. The array entries can be set to **Off**, **Mono**, or **Stereo**.
+
+#### PdmAltClock
+Selects the PDM clock output pin. If set to True, the PDM clock is output on GPIO7. If set to False or omitted, the dedicated BCLK pin is used.
+
+#### Mailbox
+Optional mailbox configuration for a slave node. Up to two mailboxes can be configured. Each entry contains the mailbox **Id**, **Direction**, and **Size**.
+
+```json
+"Mailbox": [
+  {
+    "Id": 0,
+    "Direction": "Receive",
+    "Size": 4
+  },
+  {
+    "Id": 1,
+    "Direction": "Transmit",
+    "Size": 2
+  }
+]
+```
+
+##### Id
+Mailbox number. Valid values are 0 and 1.
+
+##### Direction
+Mailbox direction. It can be set to **Receive** or **Transmit**.
+
+##### Size
+Mailbox size in bytes. Valid values are 1 to 4.
 
 ## A2BSlaveConfig 
 contains the following options used when A2BRole set to Slave:
