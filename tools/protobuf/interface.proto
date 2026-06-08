@@ -8,6 +8,38 @@ enum A2BFaultLocation
   A2B_FAULT_LOCATION_SLAVE = 2;
 }
 
+enum A2bState
+{
+    A2B_STATE_OK = 0;
+    A2B_STATE_DISCOVERY_PENDING = 1;
+    A2B_STATE_PARTIAL_DISCOVERED = 2;
+    A2B_STATE_PARTIAL_REDISCOVERY_PENDING = 3;
+    A2B_STATE_ERR_BECOVF = 4;
+    A2B_STATE_ERR_SRF_MISS = 5;
+    A2B_STATE_ERR_PWR_SHRT2GND = 6;
+    A2B_STATE_ERR_PWR_SHRT2VBAT = 7;
+    A2B_STATE_ERR_PWR_SHRT2GTHR = 8;
+    A2B_STATE_ERR_PWR_OPEN = 9;
+    A2B_STATE_ERR_PWR_REVERSE = 10;
+    A2B_STATE_ERR_PWR_OTHER = 11;
+    A2B_STATE_ERR_PWR_NL_SHRT2GND = 12;
+    A2B_STATE_ERR_PWR_NL_SHRT2VBAT = 13;
+    A2B_STATE_ERR_TIMEOUT = 14;
+    A2B_STATE_ERR_MSTR_RESET = 15;
+    A2B_STATE_ERR_I2C_ERROR = 16;
+    A2B_STATE_ERR_SLAVE_INTTYPE_READ_ERROR = 17;
+    A2B_STATE_ERR_INTERRUPT_MESSAGING_ERROR = 18;
+    A2B_STATE_ERR_STARTUP_ERROR = 19;
+    A2B_STATE_ERR_OTHER = 20;
+    A2B_STATE_ERR_INTERNAL_FATAL = 21;
+    A2B_STATE_ERR_PWR_BP_SHRT2GND = 22;
+    A2B_STATE_ERR_PWR_BN_SHRT2VBAT = 23;
+    A2B_STATE_ERR_PWR_BP_SHRT2BN = 24;
+    A2B_STATE_ERR_PWR_BN_NL_SHRT2GND = 25;
+    A2B_STATE_ERR_PWR_BP_NL_SHRT2VBAT = 26;
+    A2B_STATE_UNKNOWN = 27;
+}
+
 enum SlaveA2BState
 {
   SLAVE_A2B_STATE_UNSPECIFIED = 0;
@@ -147,7 +179,7 @@ message StatusRespRoleA2BMaster
 {
   message A2bFault
   {
-    uint32 fault = 1;
+    A2bState fault = 1;
     A2BFaultLocation location = 2;
     optional uint32 slave_with_fault = 3;
   }
@@ -204,6 +236,13 @@ message NegativeResponse
   }
 }
 
+message SetRegisterRequest
+{
+  optional uint32 node_number = 1;
+  uint32 reg = 2;
+  uint32 value = 3;
+}
+
 // #################### Communication packets ####################
 
 message RequestPacket {
@@ -217,6 +256,7 @@ message RequestPacket {
     I2COverDistanceRequest i2c_over_distance_request = 6;
     A2BMailboxTransferRequest a2b_mailbox_transfer_request = 7;
     RegisterDumpRequest register_dump_request = 8;
+    SetRegisterRequest set_register_request = 9;
   }
 }
 
@@ -227,4 +267,3 @@ message ResponsePacket {
     NegativeResponse negative_response = 2;
   }
 }
-

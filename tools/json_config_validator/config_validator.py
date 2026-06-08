@@ -219,6 +219,8 @@ _SLAVE_CONFIGURATION_ITEM: dict = {
                     "TXBCLKINV",
                     "TDMSS",
                     "INTERLEAVE",
+                    "SYNCDIS",
+                    "RXONDTX1",
                 ],
             },
             "description": "Additional TDM flags.",

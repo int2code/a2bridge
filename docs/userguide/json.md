@@ -245,7 +245,10 @@ downstream slot 5 = local RX frame buffer channel 3
 If `DownstreamReceiveSlots` is empty or missing and `DownstreamMaskMode` is not `"True"`, `LDNSLOTS.DNMASKEN` is not enabled and `LocalDnSlots` keeps the simple legacy meaning: the number of downstream slots consumed locally by the node.
 
 #### PowerConfig 
-Power configuration. Can be set to one of those values: **High** or **Low**
+Power configuration. Can be set to one of those values: **High** or **Low**.
+
+- **Low** selects CFG-0, which supports power up to 2.7 W and uses a PMOS on the high side and an internal NMOS on the low side.
+- **High** selects CFG-4, which supports power up to 50 W and uses NMOS on both the high side and the low side.
 
 #### CableLength
 Length of the cable to the upper node.
@@ -286,6 +289,12 @@ When this flag is set DTX pin is changed on the falling edge of BCLK.
 
 ##### TDMSS 
 when this flag is set the slaves TDM slot length is 16 bits; 32 bits otherwise
+
+##### SYNCDIS
+AD243x-only option. When this flag is set, the A2B_I2SGCFG.SYNCDIS bit is set.
+
+##### RXONDTX1
+AD242x-only option. When this flag is set, the A2B_I2SGCFG.RXONDTX1 bit is set.
 
 ##### INTERLEAVE 
 When this option is set, the channels are interleaved between TDM lines.
