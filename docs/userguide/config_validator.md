@@ -144,6 +144,11 @@ Each entry in `SlaveConfiguration`:
 | `LocalDnSlots` | `integer` | ≥ 0 |
 | `UpSlots` | `integer` | ≥ 0 |
 | `LocalUpSlots` | `integer` | ≥ 0 |
+| `UpstreamReceiveSlots` | `array of integer` | Optional, unique 0-based slot indexes `0..31` |
+| `DownstreamReceiveSlots` | `array of integer` | Optional, unique 0-based slot indexes `0..31` |
+| `DownstreamMaskMode` | `"True"` \| `"False"` | Optional |
+| `UpstreamOffset` | `integer` | Optional, `0..31` |
+| `DownstreamOffset` | `integer` | Optional, `0..31` |
 | `PowerConfig` | `string` | `"High"` or `"Low"` |
 | `CableLength` | `integer` | ≥ 0 (metres) |
 | `ConfigureTDM` | `"True"` \| `"False"` | |
@@ -201,5 +206,4 @@ Checks relationships between fields that JSON Schema cannot express:
 [FAIL] Config is invalid (slave mode):
   - 'A2BRole' in file is 'Master' but validation mode is 'slave' – mismatch.
 ```
-
 
