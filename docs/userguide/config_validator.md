@@ -155,7 +155,7 @@ Each entry in `SlaveConfiguration`:
 | `TdmTxLines` | `integer` | ≥ 0 |
 | `TdmRxLines` | `integer` | ≥ 0 |
 | `TDMMode` | `string` | `TDM2` `TDM4` `TDM8` `TDM12` `TDM16` `TDM20` `TDM24` `TDM32` |
-| `TDMOptions` | `array of strings` | Any subset of `EARLY` `ALT` `INV` `RXBCLKINV` `TXBCLKINV` `TDMSS` `INTERLEAVE` |
+| `TDMOptions` | `array of strings` | Any subset of `EARLY` `ALT` `INV` `RXBCLKINV` `TXBCLKINV` `TDMSS` `INTERLEAVE` `SYNCDIS` `RXONDTX1` |
 
 **Additional field required when `A2BRole` is `"Slave"`**
 
@@ -206,4 +206,3 @@ Checks relationships between fields that JSON Schema cannot express:
 [FAIL] Config is invalid (slave mode):
   - 'A2BRole' in file is 'Master' but validation mode is 'slave' – mismatch.
 ```
-

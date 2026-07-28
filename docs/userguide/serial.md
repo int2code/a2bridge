@@ -86,6 +86,25 @@ A2Bridge:~$ regs
 A2Bridge:~$ regs 0
 ```
 
+#### setreg
+Writes a single 8-bit A2B transceiver register. This command is available only in A2B Master mode.
+
+To write a register of the local master transceiver, provide the register address and value:
+
+```bash
+A2Bridge:~$ setreg 0x41 0x11
+```
+
+To write a register of a slave transceiver, additionally provide its zero-based node number:
+
+```bash
+A2Bridge:~$ setreg 0 0x41 0x11
+```
+
+The node number, register address, and value are parsed as 8-bit numbers in the range `0..255`. The node number must identify an existing slave. Decimal and hexadecimal notation are accepted.
+
+The command performs a raw register write. It does not check whether the selected register is writable and it does not store the change in the device configuration. A later discovery, reconfiguration, or device reset may overwrite the value. Refer to the A2B transceiver documentation before writing a register.
+
 
 ### Console commands in A2B Slave mode.
 
@@ -274,7 +293,44 @@ Send I2C command over A2B bus to one of the slaves or its peripheral.
   I2C_OVER_DISTANCE_READ = 2;
 **value** - the value read from the register
 
- 
+### SetRegisterRequest
+
+Writes a single 8-bit A2B transceiver register. This request is supported in A2B Master mode only.
+
+#### **Message properties**
+
+**node_number** - Optional, zero-based slave node number. If this field is omitted, the register is written on the local master transceiver. If it is present, the register is written on the selected slave transceiver over A2B.
+
+**reg** - Register address. The valid message range is `0..255`.
+
+**value** - Value written to the register. The valid message range is `0..255`.
+
+When `node_number` is present, it must identify a slave that is available on the current A2B bus.
+
+To write register `0x41` on the local master transceiver using the generated Python interface:
+
+```python
+request = interface_pb2.RequestPacket()
+request.set_register_request.reg = 0x41
+request.set_register_request.value = 0x11
+```
+
+To write the same register on slave node `0`:
+
+```python
+request = interface_pb2.RequestPacket()
+request.set_register_request.node_number = 0
+request.set_register_request.reg = 0x41
+request.set_register_request.value = 0x11
+```
+
+Because `node_number` is an optional field, assigning `0` explicitly targets the first slave. Leaving the field unset selects the local master transceiver.
+
+#### **Response**
+
+A positive response with no data is returned after a successful write. A negative response is returned when the request cannot be decoded, a field is outside the 8-bit range, or the register write fails.
+
+The request performs a raw register write and does not verify whether the register is writable. It also does not make the value persistent; discovery, reconfiguration, or device reset may overwrite it.
 
 ### A2BMailboxTransfer 
 Request to read/write A2B mailbox.
@@ -317,4 +373,4 @@ Request to read/write A2B mailbox.
   A2B_MAILBOX_STATUS_NOT_EMPTY = 3;
   A2B_MAILBOX_STATUS_NOT_FULL = 4;
 ```
-**data** - data read from the mailbox 
+**data** - data read from the mailbox
