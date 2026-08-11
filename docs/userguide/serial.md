@@ -103,7 +103,7 @@ A2Bridge:~$ setreg 0 0x41 0x11
 
 The node number, register address, and value are parsed as 8-bit numbers in the range `0..255`. The node number must identify an existing slave. Decimal and hexadecimal notation are accepted.
 
-The command performs a raw register write. It does not check whether the selected register is writable and it does not store the change in the device configuration. A later discovery, reconfiguration, or device reset may overwrite the value. Refer to the A2B transceiver documentation before writing a register.
+Before writing, the command reads the target transceiver product ID and validates the page 0 register address and its write access for the detected AD242x or AD243x family and the selected master or slave role. Read-only, undefined, role-specific, and unsupported-access registers are rejected with an explanatory console message. The command does not store the change in the device configuration. A later discovery, reconfiguration, or device reset may overwrite the value.
 
 
 ### Console commands in A2B Slave mode.
@@ -328,9 +328,9 @@ Because `node_number` is an optional field, assigning `0` explicitly targets the
 
 #### **Response**
 
-A positive response with no data is returned after a successful write. A negative response is returned when the request cannot be decoded, a field is outside the 8-bit range, or the register write fails.
+A positive response with no data is returned after a successful write. A negative response with `text_error` is returned when the request cannot be decoded, a field is outside the 8-bit range, the target product ID cannot be read or recognized, the page 0 register is read-only or unavailable for the detected product family and selected role, or the register write fails.
 
-The request performs a raw register write and does not verify whether the register is writable. It also does not make the value persistent; discovery, reconfiguration, or device reset may overwrite it.
+The request validates register write access using the same family-aware page 0 register maps as the console command. It does not make the value persistent; discovery, reconfiguration, or device reset may overwrite it. Logical VMTR and PWM addresses on MMR page 1 are not covered by this request validation.
 
 ### A2BMailboxTransfer 
 Request to read/write A2B mailbox.

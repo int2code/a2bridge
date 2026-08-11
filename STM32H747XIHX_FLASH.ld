@@ -200,6 +200,12 @@ SECTIONS
     *(.fast_ram)
   } > DTCMRAM
 
+  DATA2(NOLOAD) :
+  {
+    . = ALIGN(4);
+    KEEP(*(.DATA2))
+  } >RAM_D2
+
   DATA3(NOLOAD) :
   {
     . = ALIGN(4);
