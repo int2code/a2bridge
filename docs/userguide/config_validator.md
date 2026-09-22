@@ -156,7 +156,7 @@ Each entry in `SlaveConfiguration`:
 | `TdmRxLines` | `integer` | ≥ 0 |
 | `TDMMode` | `string` | `TDM2` `TDM4` `TDM8` `TDM12` `TDM16` `TDM20` `TDM24` `TDM32` |
 | `TDMOptions` | `array of strings` | Any subset of `EARLY` `ALT` `INV` `RXBCLKINV` `TXBCLKINV` `TDMSS` `INTERLEAVE` `SYNCDIS` `RXONDTX1` |
-| `RegistersConfiguration` | `array` | Optional. Each entry: `Address`/`Value` as `integer` or hex `string` (e.g. `"0x0C"`) |
+| `RegistersConfiguration` | `array` | Optional. Up to 10 entries. Each entry: `Address`/`Value` as `integer` or hex `string` (e.g. `"0x0C"`) |
 
 **Additional field required when `A2BRole` is `"Slave"`**
 

@@ -44,7 +44,11 @@ To access it, opens the CONFIG.A2B file. **Please be aware that JSON configurati
           "TdmTxLines": 1,
           "TdmRxLines": 1,
           "TDMMode": "TDM8",
-          "TDMOptions": ["EARLY", "INV", "ALT"]
+          "TDMOptions": ["EARLY", "INV", "ALT"],
+          "RegistersConfiguration": [
+            { "Address": 11, "Value": 8 },
+            { "Address": "0x0C", "Value": "0x08" }
+          ]
         }
       ]
     },
@@ -355,12 +359,12 @@ Mailbox direction. It can be set to **Receive** or **Transmit**.
 Mailbox size in bytes. Valid values are 1 to 4.
 
 #### RegistersConfiguration
-Optional list of raw A2B register writes applied to this node. Each entry contains an **Address** and a **Value**, both of which can be given as a decimal integer or as a hex string (e.g. `"0x0C"`).
+Optional list of raw A2B register writes applied to this node. Each entry contains an **Address** and a **Value**, both of which can be given as a decimal integer or as a hex string (e.g. `"0x0C"`). Up to 10 entries are supported.
 
 ```json
 "RegistersConfiguration": [
-  { "Address": 11, "Value": 4 },
-  { "Address": "0x0C", "Value": "0x04" }
+  { "Address": 11, "Value": 8 },
+  { "Address": "0x0C", "Value": "0x08" }
 ]
 ```
 

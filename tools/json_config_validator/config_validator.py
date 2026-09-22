@@ -107,6 +107,7 @@ _REGISTER_VALUE = {
 
 _REGISTERS_CONFIGURATION = {
     "type": "array",
+    "maxItems": 10,
     "items": {
         "type": "object",
         "required": ["Address", "Value"],
@@ -116,7 +117,10 @@ _REGISTERS_CONFIGURATION = {
             "Value": _REGISTER_VALUE,
         },
     },
-    "description": "Optional list of raw A2B register writes (address/value pairs) applied to this node.",
+    "description": (
+        "Optional list of raw A2B register writes (address/value pairs) applied "
+        "to this node. Up to 10 entries are supported."
+    ),
 }
 
 _SLAVE_CONFIGURATION_ITEM: dict = {
