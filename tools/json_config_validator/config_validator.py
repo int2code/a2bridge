@@ -97,6 +97,28 @@ _ROUTE_MATRIX = {
     "description": "Each row is a USB channel; each element is an A2B channel number.",
 }
 
+_REGISTER_VALUE = {
+    "oneOf": [
+        {"type": "integer", "minimum": 0},
+        {"type": "string", "pattern": "^0[xX][0-9a-fA-F]+$"},
+    ],
+    "description": "Value as a decimal integer or a hex string (e.g. '0x0C').",
+}
+
+_REGISTERS_CONFIGURATION = {
+    "type": "array",
+    "items": {
+        "type": "object",
+        "required": ["Address", "Value"],
+        "additionalProperties": False,
+        "properties": {
+            "Address": _REGISTER_VALUE,
+            "Value": _REGISTER_VALUE,
+        },
+    },
+    "description": "Optional list of raw A2B register writes (address/value pairs) applied to this node.",
+}
+
 _SLAVE_CONFIGURATION_ITEM: dict = {
     "type": "object",
     "required": [
@@ -225,6 +247,7 @@ _SLAVE_CONFIGURATION_ITEM: dict = {
             },
             "description": "Additional TDM flags.",
         },
+        "RegistersConfiguration": _REGISTERS_CONFIGURATION,
     },
 }
 
