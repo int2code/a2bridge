@@ -143,13 +143,13 @@ Number of the up slots coming to the device.
 Setting this flag to true will cause the A2B discovery to be triggered every 500ms as long as the A2Bridge doesn't reach the Normal state (A2B discovery successful)
 
 ### PartialDiscovery 
-Setting this flag to True allows the device to keep a partially discovered bus running when at least one slave was discovered before a later node failed. If this option is missing, the firmware default is used.
+Setting this flag to True allows the device to keep a partially discovered bus running when at least one slave was discovered before a later node failed. If this option is missing, it defaults to **True**.
 
 ### MaxDiscoveryRetries 
-Maximum number of discovery retries after a missing SRF event. The value is optional and must be an integer from 0 to 255. Setting the value to 0 will case no discovery retries will be done.
+Maximum number of discovery retries after a missing SRF event. The value is optional and must be an integer from 0 to 255, and defaults to **6** when missing. Setting the value to 0 will case no discovery retries will be done.
 
 ### DiscoveryRetryTimeout 
-Timeout in milliseconds between discovery retry attempts. The value is optional and must be a non-negative integer.
+Timeout in milliseconds between discovery retry attempts. The value is optional and must be a non-negative integer, and defaults to **100** when missing.
   
 ### SlaveConfiguration 
 Contains the table of the slave configurations. Each slave configuration should contain following properties:

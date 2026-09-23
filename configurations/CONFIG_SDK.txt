@@ -22,6 +22,9 @@
       "DnSlots": 8,
       "UpSlots": 8,
       "AutoDiscovery": "True",
+      "PartialDiscovery": "True",
+      "MaxDiscoveryRetries": 6,
+      "DiscoveryRetryTimeout": 100,
       "SlaveConfiguration":[
         {
           "Node": 0,
@@ -38,6 +41,11 @@
           "TDMOptions": ["EARLY", "INV", "ALT"]
         }
       ]
+    },
+    "A2BSlaveConfig":
+    {
+      "TdmRxChannels": 1,
+      "TdmTxChannels": 1
     },
     "SdkConfig": [
     {
